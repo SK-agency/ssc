@@ -1,0 +1,7 @@
+/* latin */
+@font-face {
+  font-family: 'ZCool';
+  font-style: normal;
+  font-weight: 400;
+  src: local('ZCool'), url(https://sk-agency.github.io/mosaic-switzerland/ZCool.woff2) format('woff2');
+}
