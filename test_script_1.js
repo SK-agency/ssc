@@ -578,3 +578,201 @@ function createAccountTableSpecialItem() {
 	</tr>
 	`);
 }
+const datepickerWidth = () => {
+  const datepickerWidthNum = $(".datepicker-wrap").innerWidth();
+  document.documentElement.style.setProperty(
+    "--datepicker-width",
+    `${datepickerWidthNum}px`
+  );
+};
+
+datepickerWidth();
+$(window).on("resize", datepickerWidth);
+
+$(document).ready(function () {
+  $(".datepicker").datepicker({
+    dateFormat: "mm-dd-yy",
+    duration: "fast",
+    changeYear: true,
+    changeMonth: true,
+    dateFormat: "mm/dd/yy",
+    gotoCurrent: true,
+    maxDate: 1,
+    beforeShow: function (input, inst) {
+      setTimeout(function () {
+        inst.dpDiv.css({
+          top: $(".datepicker").offset().top + 35,
+        });
+      }, 0);
+    },
+    nextText: "",
+    prevText: "",
+  });
+
+  $.datepicker.setDefaults({
+    dayNamesMin: $.datepicker._defaults.dayNamesShort,
+    monthNamesShort: $.datepicker._defaults.monthNames,
+  });
+
+  let selectElements = $("select.js-example-basic-single");
+  for (var i = 0; i < selectElements.length; i++) {
+    const $select = $(selectElements[i]);
+
+    //let placeholder = "Type to search";
+    let placeholder = $select.attr('placeholder') || "Type to search";
+
+    $select.select2({
+      allowClear: false,
+      placeholder: placeholder,
+      minimumResultsForSearch: 0,
+      minimumInputLength: 1,
+      dropdownPosition: "below",
+      tags: true,
+      sorter: (data) => data.sort((a, b) => a.text.localeCompare(b.text)),
+    });
+
+    // Trigger focus
+    $select.on("click", function (e) {
+      $(this).trigger("focus").select2("focus");
+    });
+
+    // Trigger search
+    $select.on("keydown", function (e) {
+      let $select = $(this);
+      let $select2 = $select.data("select2");
+      let $container = $select2.$container;
+
+      // Unprintable keys
+      if (
+        typeof e.which === "undefined" ||
+        $.inArray(e.which, [
+          0,
+          8,
+          9,
+          12,
+          16,
+          17,
+          18,
+          19,
+          20,
+          27,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          44,
+          45,
+          46,
+          91,
+          92,
+          93,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          123,
+          124,
+          144,
+          145,
+          224,
+          225,
+          57392,
+          63289,
+        ]) >= 0
+      ) {
+        return true;
+      }
+
+      // Opened dropdown
+      if ($container.hasClass("select2-container--open")) {
+        return true;
+      }
+
+      $select.select2("open");
+
+      // Default search value
+      let $search = $select2.dropdown.$search || $select2.selection.$search,
+        query =
+          $.inArray(e.which, [13, 40, 108]) < 0
+            ? String.fromCharCode(e.which)
+            : "";
+      if (query !== "") {
+        $search.val(query).trigger("keyup");
+      }
+    });
+
+    // Format, placeholder
+    $select.on("select2:open", function (e) {
+      var $select = $(this),
+        $select2 = $select.data("select2"),
+        $search = $select2.dropdown.$search || $select2.selection.$search,
+        data = $select.select2("data");
+
+      $select2.dropdown.$dropdown.find('.select2-results').removeClass('padding-bottom');
+
+      // Placeholder
+      $search.attr(
+        "placeholder",
+        data[0].text !== "" ? data[0].text : $select.placeholder
+      );
+
+
+      $search.on("input", function () {
+        const searchInput = $(this);
+        const optionsObject = $select.find("option");
+        let optionsArray = [];
+
+        searchInput.val() !== "" ?
+        $select2.dropdown.$dropdown.find('.select2-results').addClass('padding-bottom') :
+            $select2.dropdown.$dropdown.find('.select2-results').removeClass('padding-bottom');
+
+        for (let i = 0; i < optionsObject.length; i++) {
+          optionsArray.push(optionsObject[i]);
+        }
+
+        let index = optionsArray.length;
+        const lastOption = optionsArray[index - 1];
+
+        if (lastOption.value == searchInput.val()) {
+          searchInput
+            .closest(".select2-container")
+            .find(
+              `.select2-results__options li:contains("${lastOption.value}")`
+            )
+            .filter(function () {
+              return $(this).text() === lastOption.value;
+            })
+            .addClass("custom");
+
+          const currentOptionValue =  searchInput
+              .closest(".select2-container")
+              .find(
+                  `.select2-results__options li:contains("${lastOption.value}")`
+              )
+              .filter(function () {
+                return $(this).text() === lastOption.value;
+              }).text();
+
+          searchInput
+              .closest(".select2-container")
+              .find(
+                  `.select2-results__options li:contains("${lastOption.value}")`
+              )
+              .filter(function () {
+                return $(this).text() === lastOption.value;
+              }).text(`Not listed? Add manually "${currentOptionValue}"`);
+        }
+      });
+    });
+  }
+
+});
