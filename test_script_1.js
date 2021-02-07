@@ -531,6 +531,14 @@ function updateCountryItem(bind, value) {
   $(`[data-update=${bind}]`).text(value);
 }
 
+function updateAccountTableItem(bind, value) {
+  $($(`#item-${tableAccountIndex}  [data-update=${bind}]`)).text(value);
+}
+
+function updateAgenciesTableItem(bind, value) {
+  $($(`#agencyItem-${tableAgenciesIndex}  [data-update=${bind}]`)).text(value);
+}
+
 function formatNumber(num) {
   return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
