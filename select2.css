@@ -61,7 +61,7 @@
     border-radius: 2px;
     background-color: #fcfcfc;
     padding: 9px 15px 10px;
-    height: 33px;
+    height: 38px;
 }
 .section-form.report-sim-form form.custom-form .form-block .field label .select2-container--default .select2-selection--single:active,
 .section-form.report-sim-form form.custom-form .form-block .field label .select2-container--default .select2-selection--single:hover {
@@ -86,7 +86,7 @@
     font-size: 12px;
     line-height: 15px;
     color: #252525;
-    height: 33px;
+    height: 38px;
 }
 .select2-dropdown .select2-search .select2-search__field:focus {
     outline: none;
