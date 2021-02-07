@@ -1,0 +1,208 @@
+.section-form form .field.error .select2-container--default .select2-selection--single,
+.section-form form .field.error input,
+.section-form form .field.error textarea {
+    background: #fff7f7;
+    color: #ba3535;
+    border-color: #ba3535;
+}
+.section-form form .field label .select2-container--default {
+    width: 100% !important;
+}
+.section-form form .field label .select2-container--default.select2-container--open .select2-selection--single {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.section-form form .field label .select2-container--default .select2-selection--single {
+    border: 1px solid #66669a;
+    padding: 9px 30px;
+    border-radius: 24px;
+    height: auto;
+    width: 100%;
+    outline: none;
+    transition: 0.3s;
+}
+.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__rendered {
+    padding: 0;
+    
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #252525;
+}
+.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__rendered,
+.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__rendered * {
+    
+}
+.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+    width: 48px;
+}
+.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-width: 6px 8px;
+    margin-left: -12px;
+    border-color: #5a6e8e transparent transparent;
+}
+.section-form.report-sim-form form.custom-form .form-block .field.error input,
+.section-form.report-sim-form form.custom-form .form-block .field.error label .select2-container--default .select2-selection--single {
+    border: 1px solid red;
+    border-radius: 2px;
+}
+.section-form.report-sim-form form.custom-form .form-block .field label select:disabled + span .select2-selection.select2-selection--single {
+    border: 1px solid #f5f8fc;
+}
+.section-form.report-sim-form form.custom-form .form-block .field label select:disabled + span .select2-selection__placeholder {
+    opacity: 0.2;
+}
+.section-form.report-sim-form form.custom-form .form-block .field label select:disabled + span .select2-selection__arrow b:after {
+    opacity: 0.4;
+}
+.section-form.report-sim-form form.custom-form .form-block .field label .select2-container--default .select2-selection--single {
+    border: 1px solid #dedede;
+    border-radius: 2px;
+    background-color: #fcfcfc;
+    padding: 9px 15px 10px;
+    height: 33px;
+}
+.section-form.report-sim-form form.custom-form .form-block .field label .select2-container--default .select2-selection--single:active,
+.section-form.report-sim-form form.custom-form .form-block .field label .select2-container--default .select2-selection--single:hover {
+    border-color: #bdbdbd;
+}
+.section-form.report-sim-form form.custom-form .form-block .field .select2-container--default .select2-selection--single .select2-selection__arrow {
+    width: 35px;
+}
+.select2-dropdown {
+    border-color: #bdbdbd;
+    margin-top: -33px;
+}
+.select2-dropdown .select2-search {
+    padding: 0;
+}
+.select2-dropdown .select2-search .select2-search__field {
+    padding: 10px 15px 9px;
+    border-radius: 2px;
+    background-color: #fcfcfc;
+    
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #252525;
+    height: 33px;
+}
+.select2-dropdown .select2-search .select2-search__field:focus {
+    outline: none;
+}
+.select2-dropdown .select2-search .select2-search__field::-webkit-input-placeholder {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #252525;
+}
+.select2-dropdown .select2-search .select2-search__field::-moz-placeholder {  
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #252525;
+}
+.select2-dropdown .select2-search .select2-search__field:-ms-input-placeholder,
+.select2-dropdown .select2-search .select2-search__field::-ms-input-placeholder {   
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #252525;
+}
+.select2-dropdown .select2-search .select2-search__field::placeholder {
+    
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #252525;
+}
+.select2-dropdown.select2-dropdown--below {
+    border: none;
+}
+.select2-results {
+    margin-top: 5px;
+    background: #fcfcfc;
+    border: 1px solid #bdbdbd;
+    border-radius: 2px;
+}
+.select2-results.padding-bottom {
+    padding-bottom: 40px;
+}
+.select2-results__option {
+    
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000;
+    padding: 5px 10px;
+}
+.select2-results__option.custom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #252525;
+    padding: 12px 10px;
+    color: #fff;
+    font-weight: 600;
+}
+.select2-results__option.custom.select2-results__option--highlighted[aria-selected] {
+    background: #252525;
+}
+.select2-results__option.custom:after {
+    position: absolute;
+    content: "+";
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: #fff;
+    color: #252525;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 200;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background: #1e436f;
+}
+.select2-container--default .select2-results__option[aria-selected="true"] {
+    background-color: #fff;
+    color: #252525;
+    opacity: 0.3;
+}
+.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    margin: 0;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow b:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 7px;
+    background-image: url(../img/arrow.svg);
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: 50%;
+    z-index: 10;
+    padding: 3px;
+    background-color: #fcfcfc;
+}
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #252525;
+    opacity: 0.5;
+}
