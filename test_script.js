@@ -558,3 +558,15 @@ $(".fields-account [data-bind]").on("change keyup", function () {
     updateAccountTableItem(bind, value);
   }
 });
+
+function createAccountTableSpecialItem() {
+  $(".result-table-accounts tbody.multiple").append(`
+	<tr id="item-${tableAccountIndex}" class="accounts-item">
+			<td class="row">${tableAccountIndex}</td>
+			<td data-update='Carrier'></td>
+			<td data-update="accessed" class="table-accessed">Lost control</td>
+			<td class="remove-file remove-item" style="visibility: hidden;
+    z-index: -99"></td>
+	</tr>
+	`);
+}
