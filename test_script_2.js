@@ -525,11 +525,31 @@ $(".field-general [data-bind]").on("change keyup", function () {
   matchProhibitedSymbols($(this));
 });
 
+function updateCheckboxItem(bind, value) {
+  $(`[	=${bind}]`).closest($(".result-table")).attr("style", "");
+  $(`[data-update=${bind}]`).text(value);
+  $(`[data-key=${bind}]`).attr(
+    "src",
+    `https://stopsimcrime.org/wp-content/themes/stopsimcrime/img/${bind}.svg`
+  );
+}
+
+
 function updateCountryItem(bind, value) {
   $(`[data-update=${bind}]`).closest($(".result-table")).attr("style", "");
   $(`[data-key=${bind}]`).text(bind);
   $(`[data-update=${bind}]`).text(value);
 }
+
+function updateAmountTableItem(bind, value) {
+  $($(`#row-${tableAmountIndex}  [data-key=${bind}]`)).text(bind);
+  $($(`#row-${tableAmountIndex}  [data-update=${bind}]`)).text(value);
+
+  if (bind === "stolen-amount") {
+    updateAmountTableItem("currency", $('[name="amount"]').val());
+  }
+}
+
 
 function updateAccountTableItem(bind, value) {
   $($(`#item-${tableAccountIndex}  [data-update=${bind}]`)).text(value);
