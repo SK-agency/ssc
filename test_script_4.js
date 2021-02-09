@@ -467,8 +467,8 @@ $(".field-general [data-bind]").on("change keyup", function () {
   bind === "Country" ? (countryOption = $(this).val()) : "";
   updateCountryItem(bind, value);
 
-  $(`[data-key=${"' + bind + '"}]`) && (bind === "Country" || bind === "Carrier" || bind === "Agency Reported To")
-    ? $(`[data-key=${"' + bind + '"}]`).parent().addClass("show-line")
+  $(`[data-key=${bind.replace(/\s/g,'-')}]`) && (bind === "Country" || bind === "Carrier" || bind === "Agency Reported To")
+    ? $(`[data-key=${bind.replace(/\s/g,'-')}]`).parent().addClass("show-line")
     : "";
 
   if (countryOption && bind === "Country") {
@@ -527,8 +527,8 @@ $(".field-general [data-bind]").on("change keyup", function () {
 
 function updateCheckboxItem(bind, value) {
   $(`[	=${bind}]`).closest($(".result-table")).attr("style", "");
-  $(`[data-update=${"' + bind + '"}]`).text(value);
-  $(`[data-key=${"' + bind + '"}]`).attr(
+  $(`[data-update=${bind.replace(/\s/g,'-')}]`).text(value);
+  $(`[data-key=${bind.replace(/\s/g,'-')}]`).attr(
     "src",
     `https://stopsimcrime.org/wp-content/themes/stopsimcrime/img/${bind}.svg`
   );
@@ -536,14 +536,14 @@ function updateCheckboxItem(bind, value) {
 
 
 function updateCountryItem(bind, value) {
-  $(`[data-update=${"' + bind + '"}]`).closest($(".result-table")).attr("style", "");
-  $(`[data-key=${"' + bind + '"}]`).text(bind);
-  $(`[data-update=${"' + bind + '"}]`).text(value);
+  $(`[data-update=${bind.replace(/\s/g,'-')}]`).closest($(".result-table")).attr("style", "");
+  $(`[data-key=${bind.replace(/\s/g,'-')}]`).text(bind);
+  $(`[data-update=${bind.replace(/\s/g,'-')}]`).text(value);
 }
 
 function updateAmountTableItem(bind, value) {
-  $($(`#row-${tableAmountIndex}  [data-key=${"' + bind + '"}]`)).text(bind);
-  $($(`#row-${tableAmountIndex}  [data-update=${"' + bind + '"}]`)).text(value);
+  $($(`#row-${tableAmountIndex}  [data-key=${bind.replace(/\s/g,'-')}]`)).text(bind);
+  $($(`#row-${tableAmountIndex}  [data-update=${bind.replace(/\s/g,'-')}]`)).text(value);
 
   if (bind === "stolen-amount") {
     updateAmountTableItem("currency", $('[name="amount"]').val());
@@ -552,11 +552,11 @@ function updateAmountTableItem(bind, value) {
 
 
 function updateAccountTableItem(bind, value) {
-  $($(`#item-${tableAccountIndex}  [data-update=${"' + bind + '"}]`)).text(value);
+  $($(`#item-${tableAccountIndex}  [data-update=${bind.replace(/\s/g,'-')}]`)).text(value);
 }
 
 function updateAgenciesTableItem(bind, value) {
-  $($(`#agencyItem-${tableAgenciesIndex}  [data-update=${"' + bind + '"}]`)).text(value);
+  $($(`#agencyItem-${tableAgenciesIndex}  [data-update=${bind.replace(/\s/g,'-')}]`)).text(value);
 }
 
 function formatNumber(num) {
@@ -598,8 +598,8 @@ $(".field-hidden [data-bind]").on("change keyup", function (e) {
   }
 
   if(bind === 'stolen-amount') {
-    let formattedNumber = formatNumber($($(`#row-${tableAmountIndex}  [data-update=${"' + bind + '"}]`)).text());
-    $($(`#row-${tableAmountIndex}  [data-update=${"' + bind + '"}]`)).text(formattedNumber);
+    let formattedNumber = formatNumber($($(`#row-${tableAmountIndex}  [data-update=${bind.replace(/\s/g,'-')}]`)).text());
+    $($(`#row-${tableAmountIndex}  [data-update=${bind.replace(/\s/g,'-')}]`)).text(formattedNumber);
   }
 });
 $(".fields-account [data-bind]").on("change keyup", function () {
