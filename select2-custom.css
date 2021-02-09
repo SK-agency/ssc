@@ -231,7 +231,6 @@
 .popup-report-wrapper-new form .field.error .select2-container--default .select2-selection--single,
 .popup-report-wrapper-new form .field.error input,
 .popup-report-wrapper-new form .field.error textarea {
-    background: #fff7f7;
     color: #ba3535;
     border-color: #ba3535;
 }
@@ -243,7 +242,6 @@
     position: absolute;
     content: "this filed is required";
     text-transform: uppercase;
-    font-family: Montserrat, sans-serif;
     font-weight: 600;
     font-size: 8px;
     line-height: 10px;
