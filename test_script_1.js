@@ -543,6 +543,45 @@ function formatNumber(num) {
   return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
 
+$(".field-hidden [data-bind]").on("change keyup", function (e) {
+  formReportSimCrime.find(".btn-submit").removeClass("error-form");
+  formReportSimCrime.find(".btn-submit").prop("disabled", false);
+  const bind = $(this).data("bind");
+  const value = $(this).val();
+  $(".result-table-multiple").attr("style", "");
+
+  if ($(`#row-${tableAmountIndex}`).length !== 0) {
+    updateAmountTableItem(bind, value);
+  } else {
+    createAmountTableItem();
+
+    updateAmountTableItem(bind, value);
+  }
+
+  if (bind === "stolen-from" || bind === "accessed-additional") {
+    $(".result-table-accounts").attr("style", "");
+
+    if (
+        $(`#item-${tableAccountIndex}`).has('[data-update="account"]').length !== 0 ||
+        $(`#item-${tableAccountIndex}`).has('[data-update="Carrier"]').length !== 0
+    ) {
+      tableAccountIndex++;
+    }
+
+    if ($(`#item-${tableAccountIndex}`).length !== 0) {
+      updateAccountTableItem(bind, value);
+    } else {
+      createAccountTableItemFromAmounts();
+
+      updateAccountTableItem(bind, value);
+    }
+  }
+
+  if(bind === 'stolen-amount') {
+    let formattedNumber = formatNumber($($(`#row-${tableAmountIndex}  [data-update=${bind}]`)).text());
+    $($(`#row-${tableAmountIndex}  [data-update=${bind}]`)).text(formattedNumber);
+  }
+});
 $(".fields-account [data-bind]").on("change keyup", function () {
   formReportSimCrime.find(".btn-submit").removeClass("error-form");
   formReportSimCrime.find(".btn-submit").prop("disabled", false);
@@ -566,6 +605,26 @@ $(".fields-account [data-bind]").on("change keyup", function () {
     updateAccountTableItem(bind, value);
   }
 });
+$(".field-agencies [data-bind]").on("change keyup", function () {
+  const bind = $(this).data("bind");
+  const value = $(this).val();
+
+  if(bind !== 'was-reported') {
+    $(".result-table-agencies").attr("style", "");
+
+    if ($(`#agencyItem-${tableAgenciesIndex}`).length !== 0) {
+      updateAgenciesTableItem(bind, value);
+    } else {
+      createAgenciesTableItem();
+
+      updateAgenciesTableItem(bind, value);
+    }
+  } else {
+    value === "Yes"
+        ? $(".field-agency").css("display", "block")
+        : $(".field-agency").attr("style", "");
+  }
+});
 
 function createAccountTableSpecialItem() {
   $(".result-table-accounts tbody.multiple").append(`
@@ -578,201 +637,66 @@ function createAccountTableSpecialItem() {
 	</tr>
 	`);
 }
-const datepickerWidth = () => {
-  const datepickerWidthNum = $(".datepicker-wrap").innerWidth();
-  document.documentElement.style.setProperty(
-    "--datepicker-width",
-    `${datepickerWidthNum}px`
-  );
-};
 
-datepickerWidth();
-$(window).on("resize", datepickerWidth);
+$(".btn-submit").on("click", function (e) {
+  const $that = $(this);
+  var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var form = $(this).closest("form");
+  var inputsRequired = form.find("[data-required]");
+  const textInputs = form.find('input[type="text"], textarea, input[type="number"]');
+  let errorEmail = false;
+  let errorInput;
+  form.find(".field").removeClass("error");
 
-$(document).ready(function () {
-  $(".datepicker").datepicker({
-    dateFormat: "mm-dd-yy",
-    duration: "fast",
-    changeYear: true,
-    changeMonth: true,
-    dateFormat: "mm/dd/yy",
-    gotoCurrent: true,
-    maxDate: 1,
-    beforeShow: function (input, inst) {
-      setTimeout(function () {
-        inst.dpDiv.css({
-          top: $(".datepicker").offset().top + 35,
-        });
-      }, 0);
-    },
-    nextText: "",
-    prevText: "",
+  // if ($(".g-recaptcha-response").length) {
+  //   if (!$(".g-recaptcha-response").val()) {
+  //     $(".g-recaptcha-response").closest(".field").addClass("error");
+  //     error = true;
+  //   }
+  // }
+
+  inputsRequired.each(function () {
+    if (!$(this).val() || $(this).val() === 0) {
+      $(this).closest(".field").addClass("error");
+      error = true;
+    }
+
+    if ($('input[name="was-stolen"]:checked').length === 0) {
+      $('input[name="was-stolen"]').closest(".field").addClass("error");
+      error = true;
+    }
+
+    if ($(this).attr("type") === "email" && !emailRegex.test($(this).val())) {
+      errorEmail = true;
+    }
   });
 
-  $.datepicker.setDefaults({
-    dayNamesMin: $.datepicker._defaults.dayNamesShort,
-    monthNamesShort: $.datepicker._defaults.monthNames,
+  textInputs.each(function () {
+    matchProhibitedSymbols($(this));
+    if (errorProhibitedSymbol) {
+      return (errorInput = true);
+    }
   });
 
-  let selectElements = $("select.js-example-basic-single");
-  for (var i = 0; i < selectElements.length; i++) {
-    const $select = $(selectElements[i]);
-
-    //let placeholder = "Type to search";
-    let placeholder = $select.attr('placeholder') || "Type to search";
-
-    $select.select2({
-      allowClear: false,
-      placeholder: placeholder,
-      minimumResultsForSearch: 0,
-      minimumInputLength: 1,
-      dropdownPosition: "below",
-      tags: true,
-      sorter: (data) => data.sort((a, b) => a.text.localeCompare(b.text)),
-    });
-
-    // Trigger focus
-    $select.on("click", function (e) {
-      $(this).trigger("focus").select2("focus");
-    });
-
-    // Trigger search
-    $select.on("keydown", function (e) {
-      let $select = $(this);
-      let $select2 = $select.data("select2");
-      let $container = $select2.$container;
-
-      // Unprintable keys
-      if (
-        typeof e.which === "undefined" ||
-        $.inArray(e.which, [
-          0,
-          8,
-          9,
-          12,
-          16,
-          17,
-          18,
-          19,
-          20,
-          27,
-          33,
-          34,
-          35,
-          36,
-          37,
-          38,
-          39,
-          44,
-          45,
-          46,
-          91,
-          92,
-          93,
-          112,
-          113,
-          114,
-          115,
-          116,
-          117,
-          118,
-          119,
-          120,
-          121,
-          123,
-          124,
-          144,
-          145,
-          224,
-          225,
-          57392,
-          63289,
-        ]) >= 0
-      ) {
-        return true;
-      }
-
-      // Opened dropdown
-      if ($container.hasClass("select2-container--open")) {
-        return true;
-      }
-
-      $select.select2("open");
-
-      // Default search value
-      let $search = $select2.dropdown.$search || $select2.selection.$search,
-        query =
-          $.inArray(e.which, [13, 40, 108]) < 0
-            ? String.fromCharCode(e.which)
-            : "";
-      if (query !== "") {
-        $search.val(query).trigger("keyup");
-      }
-    });
-
-    // Format, placeholder
-    $select.on("select2:open", function (e) {
-      var $select = $(this),
-        $select2 = $select.data("select2"),
-        $search = $select2.dropdown.$search || $select2.selection.$search,
-        data = $select.select2("data");
-
-      $select2.dropdown.$dropdown.find('.select2-results').removeClass('padding-bottom');
-
-      // Placeholder
-      $search.attr(
-        "placeholder",
-        data[0].text !== "" ? data[0].text : $select.placeholder
-      );
-
-
-      $search.on("input", function () {
-        const searchInput = $(this);
-        const optionsObject = $select.find("option");
-        let optionsArray = [];
-
-        searchInput.val() !== "" ?
-        $select2.dropdown.$dropdown.find('.select2-results').addClass('padding-bottom') :
-            $select2.dropdown.$dropdown.find('.select2-results').removeClass('padding-bottom');
-
-        for (let i = 0; i < optionsObject.length; i++) {
-          optionsArray.push(optionsObject[i]);
-        }
-
-        let index = optionsArray.length;
-        const lastOption = optionsArray[index - 1];
-
-        if (lastOption.value == searchInput.val()) {
-          searchInput
-            .closest(".select2-container")
-            .find(
-              `.select2-results__options li:contains("${lastOption.value}")`
-            )
-            .filter(function () {
-              return $(this).text() === lastOption.value;
-            })
-            .addClass("custom");
-
-          const currentOptionValue =  searchInput
-              .closest(".select2-container")
-              .find(
-                  `.select2-results__options li:contains("${lastOption.value}")`
-              )
-              .filter(function () {
-                return $(this).text() === lastOption.value;
-              }).text();
-
-          searchInput
-              .closest(".select2-container")
-              .find(
-                  `.select2-results__options li:contains("${lastOption.value}")`
-              )
-              .filter(function () {
-                return $(this).text() === lastOption.value;
-              }).text(`Not listed? Add manually "${currentOptionValue}"`);
-        }
-      });
-    });
+  if (error) {
+    e.preventDefault();
+    $that.addClass("error-form");
+    $that.prop("disabled", true);
   }
+
+  if (errorInput) {
+    e.preventDefault();
+    $that.addClass("error-form");
+    $that.prop("disabled", true);
+  }
+
+  if (errorEmail) {
+    setTimeout(function () {
+      $that.addClass("error-form");
+      $that.prop("disabled", true);
+    }, 200);
+  }
+});
+
 
 });
