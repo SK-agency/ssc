@@ -662,7 +662,7 @@ $(".btn-submit").on("click", function (e) {
   const $that = $(this);
   var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   var form = $(this).closest("form");
-  var inputsRequired = form.find("[data-required]");
+  var inputsRequired = form.find("[required]");
   const textInputs = form.find('input[type="text"], textarea, input[type="number"]');
   let errorEmail = false;
   let errorInput;
