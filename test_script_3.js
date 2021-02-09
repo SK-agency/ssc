@@ -467,8 +467,8 @@ $(".field-general [data-bind]").on("change keyup", function () {
   bind === "Country" ? (countryOption = $(this).val()) : "";
   updateCountryItem(bind, value);
 
-  $(`[data-key=${bind}]`) && (bind === "Country" || bind === "Carrier" || bind === "Agency Reported To")
-    ? $(`[data-key=${bind}]`).parent().addClass("show-line")
+  $(`[data-key=${"' + bind + '"}]`) && (bind === "Country" || bind === "Carrier" || bind === "Agency Reported To")
+    ? $(`[data-key=${"' + bind + '"}]`).parent().addClass("show-line")
     : "";
 
   if (countryOption && bind === "Country") {
@@ -528,7 +528,7 @@ $(".field-general [data-bind]").on("change keyup", function () {
 function updateCheckboxItem(bind, value) {
   $(`[	=${bind}]`).closest($(".result-table")).attr("style", "");
   $(`[data-update=${"' + bind + '"}]`).text(value);
-  $(`[data-key=${bind}]`).attr(
+  $(`[data-key=${"' + bind + '"}]`).attr(
     "src",
     `https://stopsimcrime.org/wp-content/themes/stopsimcrime/img/${bind}.svg`
   );
@@ -537,12 +537,12 @@ function updateCheckboxItem(bind, value) {
 
 function updateCountryItem(bind, value) {
   $(`[data-update=${"' + bind + '"}]`).closest($(".result-table")).attr("style", "");
-  $(`[data-key=${bind}]`).text(bind);
+  $(`[data-key=${"' + bind + '"}]`).text(bind);
   $(`[data-update=${"' + bind + '"}]`).text(value);
 }
 
 function updateAmountTableItem(bind, value) {
-  $($(`#row-${tableAmountIndex}  [data-key=${bind}]`)).text(bind);
+  $($(`#row-${tableAmountIndex}  [data-key=${"' + bind + '"}]`)).text(bind);
   $($(`#row-${tableAmountIndex}  [data-update=${"' + bind + '"}]`)).text(value);
 
   if (bind === "stolen-amount") {
