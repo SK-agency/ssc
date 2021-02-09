@@ -697,6 +697,3 @@ $(".btn-submit").on("click", function (e) {
     }, 200);
   }
 });
-
-
-});
