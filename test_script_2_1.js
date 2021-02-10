@@ -93,6 +93,9 @@
       this.$container
         .removeClass("select2-container--below select2-container--above")
         .addClass("select2-container--" + newDirection);
+      if (this.$dropdown.find('.input-label-report').length === 0) {
+          this.$dropdown.append(this.$container.siblings(".input-label-report").clone())
+	  }
     }
 
     this.$dropdownContainer.css(css);
