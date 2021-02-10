@@ -2,8 +2,8 @@
 .section-form form .field.error input,
 .section-form form .field.error textarea {
     background: #fff7f7;
-    color: #ba3535;
-    border-color: #ba3535;
+    color: red;
+    border-color: red;
 }
 .section-form form .field label .select2-container--default {
     width: 100% !important;
@@ -45,7 +45,7 @@
 .section-form.report-sim-form form.custom-form .form-block .field.error input,
 .section-form.report-sim-form form.custom-form .form-block .field.error label .select2-container--default .select2-selection--single {
     border: 1px solid red;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 .section-form.report-sim-form form.custom-form .form-block .field label select:disabled + span .select2-selection.select2-selection--single {
     border: 1px solid #f5f8fc;
@@ -228,8 +228,8 @@
 .popup-report-wrapper-new form .field.error .select2-container--default .select2-selection--single,
 .popup-report-wrapper-new form .field.error input,
 .popup-report-wrapper-new form .field.error textarea {
-    color: #ba3535;
-    border-color: #ba3535;
+    color: red;
+    border-color: red;
 }
 .popup-report-wrapper-new.report-sim-form form.custom-form .form-block .field.error {
     position: relative;
