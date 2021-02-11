@@ -250,5 +250,5 @@
 .popup-report-wrapper-new.report-sim-form form.custom-form .form-block .field.error input,
 .popup-report-wrapper-new.report-sim-form form.custom-form .form-block .field.error label .select2-container--default .select2-selection--single {
     border: 1px solid red;
-    border-radius: 2px;
+    border-radius: 4px;
 }
