@@ -416,6 +416,8 @@ let tableAgenciesIndex = 1;
 let countryOption;
 const formReportSimCrime = $(".report-sim-form");
 $(".field-hidden").attr("style", "");
+$(".result-table").css("display", "none");
+$(".result-table-multiple").css("display", "none");
 
 function matchProhibitedSymbols(input) {
   const inputValue = input.val();
@@ -450,6 +452,30 @@ $('.field-general select[data-bind="Country"]').each(function () {
       false
     );
     $(this).append(newCountryOption).trigger("change");
+  }
+});
+$('.field select[name="amount"]').each(function () {
+  let newCurrencyOption;
+  for (let i = 0; i < jsonCurrency.length; i++) {
+    newCurrencyOption = new Option(
+        jsonCurrency[i].value,
+        jsonCurrency[i].value,
+      false,
+      false
+    );
+    $(this).append(newCurrencyOption).trigger("change");
+  }
+});
+$('.field select[name="stolen-from"]').each(function () {
+  let newStolenOption;
+  for (let i = 0; i < jsonStolenFrom.length; i++) {
+    newStolenOption = new Option(
+        jsonStolenFrom[i].value,
+        jsonStolenFrom[i].value,
+        false,
+        false
+    );
+    $(this).append(newStolenOption).trigger("change");
   }
 });
 
@@ -648,6 +674,105 @@ $(".field-agencies [data-bind]").on("change keyup", function () {
         : $(".field-agency").attr("style", "");
   }
 });
+
+$(".field-hidden.btn-add").on("click", function (e) {
+  e.preventDefault();
+  $(".field-hidden:not(.field-radio) [data-bind]").val("");
+  $('input[name="accessed-additional"]').prop("checked", false);
+  setTimeout(() => {
+    $('select[data-bind="stolen-from"]').val(null).trigger("change");
+    $('select[name="amount"]')
+      .val('')
+      .trigger("change");
+  }, 50);
+
+  tableAmountIndex++;
+  tableAccountIndex++;
+
+});
+
+$(".fields-account .btn-add").on("click", function (e) {
+  e.preventDefault();
+  $('[data-bind="accessed"]').prop("checked", false);
+  setTimeout(() => {
+    $('.fields-account [data-bind="account"]').val("").trigger("change");
+  }, 50);
+
+  //if(tableAccountIndex !== 1) {
+    tableAccountIndex++;
+  //}
+});
+
+$(".field-agencies .btn-add").on("click", function (e) {
+  e.preventDefault();
+  setTimeout(() => {
+    $('.field-agency [name="agency"]').val(null).trigger("change");
+  }, 50);
+
+  //if(tableAccountIndex !== 1) {
+  tableAgenciesIndex++;
+  //}
+});
+
+$("table.result-table-multiple").on("click", "td.remove-item", function () {
+  const accountsBind =  $('.result-table-accounts').find('[data-update="stolen-from"]');
+  const amountsBind =  $(this).closest("tr.table-row-item").find('[data-update="stolen-from"]').text();
+
+    accountsBind.each(function() {
+      if($(this).text() === amountsBind) {
+        $(this).parent().find(".remove-item").trigger("click");
+      }
+    });
+
+  $(this).closest("tr.table-row-item").remove();
+  let i = 1;
+
+  let tables = document.querySelectorAll(
+    ".result-table-multiple tr.table-row-item"
+  );
+  for (i = 0; i < tables.length; i++) {
+      tables[i].setAttribute("id", `row-${i + 1}`);
+      tables[i].querySelector(".row").textContent = i + 1;
+  }
+
+  tableAmountIndex = i;
+
+  if(tableAmountIndex === 0) {
+    tableAmountIndex++;
+     $(".field-hidden:not(.field-radio) [data-bind]").val("");
+     $('input[name="accessed-additional"]').prop("checked", false);
+  //  setTimeout(() => {
+      $('select[data-bind="stolen-from"]').val(null).trigger("change");
+      $('select[name="amount"]')
+          .val('').trigger("change");
+   // }, 150);
+
+  }
+
+ // setTimeout(() => {
+  tables.length
+      ? $(".result-table-multiple").attr("style", "")
+      : $(".result-table-multiple").css("display", "none");
+  //}, 160)
+
+
+
+function createAmountTableItem() {
+  $(".result-table-multiple .multiple").append(`
+  
+  <div class="input-stolen-wrapper" id="row-${tableAmountIndex}">
+  <div id="w-node-_79d40cca-7b7e-8d05-1d19-a2ef7a522391-ce03a58a" class="table-num">${tableAmountIndex}</div>
+  <div data-key="Money-Stolen" class="table-stolen">stolen from</div>
+  <div data-update="Money-Stolen" class="table-amount">amount</div>
+  <div data-update="Money-Stolen" class="table-currency">currency</div>
+  <div data-update="Money-Stolen" class="table-remove"></div>
+	  <div id="w-node-_79d40cca-7b7e-8d05-1d19-a2ef7a52239a-ce03a58a">
+	  <div class="table-crypto-key"></div>
+	  <div class="table-crypto-update"></div>
+	  </div>
+  </div>`);
+}
+
 
 function createAccountTableSpecialItem() {
   $(".result-table-accounts tbody.multiple").append(`
