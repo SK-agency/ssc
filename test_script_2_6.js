@@ -741,6 +741,7 @@ $("table.result-table-multiple").on("click", "td.remove-item", function () {
     tableAmountIndex++;
      $(".field-hidden:not(.field-radio) [data-bind]").val("");
      $('input[name="accessed-additional"]').prop("checked", false);
+     $('input[name="accessed-additional"]').siblings(".w-form-formradioinput").removeClass("w--redirected-checked");
   //  setTimeout(() => {
       $('select[data-bind="stolen-from"]').val(null).trigger("change");
       $('select[name="amount"]')
