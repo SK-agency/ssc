@@ -762,13 +762,13 @@ function createAmountTableItem() {
   
   <div class="input-stolen-wrapper" id="row-${tableAmountIndex}">
   <div id="w-node-_79d40cca-7b7e-8d05-1d19-a2ef7a522391-ce03a58a" class="table-num">${tableAmountIndex}</div>
-  <div data-key="Money-Stolen" class="table-stolen">stolen from</div>
-  <div data-update="Money-Stolen" class="table-amount">amount</div>
-  <div data-update="Money-Stolen" class="table-currency">currency</div>
-  <div data-update="Money-Stolen" class="table-remove"></div>
+  <div data-update='stolen-from' class="table-stolen"></div>
+  <div data-update='stolen-amount' class="table-amount"></div>
+  <div data-update='currency' class="table-currency"></div>
+  <div class="remove-file remove-item table-remove"></div>
 	  <div id="w-node-_79d40cca-7b7e-8d05-1d19-a2ef7a52239a-ce03a58a">
-	  <div class="table-crypto-key"></div>
-	  <div class="table-crypto-update"></div>
+	  <div data-key='crypto' class="table-crypto-key"></div>
+	  <div data-update='crypto' class="table-crypto-update"></div>
 	  </div>
   </div>`);
 }
