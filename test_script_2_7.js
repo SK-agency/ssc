@@ -714,9 +714,9 @@ $(".field-agencies .btn-add").on("click", function (e) {
   //}
 });
 
-$("table.result-table-multiple").on("click", "td.remove-item", function () {
+$(".result-table-multiple").on("click", ".remove-item", function () {
   const accountsBind =  $('.result-table-accounts').find('[data-update="stolen-from"]');
-  const amountsBind =  $(this).closest("tr.table-row-item").find('[data-update="stolen-from"]').text();
+  const amountsBind =  $(this).closest(".input-stolen-wrapper").find('[data-update="stolen-from"]').text();
 
     accountsBind.each(function() {
       if($(this).text() === amountsBind) {
@@ -724,15 +724,15 @@ $("table.result-table-multiple").on("click", "td.remove-item", function () {
       }
     });
 
-  $(this).closest("tr.table-row-item").remove();
+  $(this).closest(".input-stolen-wrapper").remove();
   let i = 1;
 
   let tables = document.querySelectorAll(
-    ".result-table-multiple tr.table-row-item"
+    ".result-table-multiple .input-stolen-wrapper.data"
   );
   for (i = 0; i < tables.length; i++) {
       tables[i].setAttribute("id", `row-${i + 1}`);
-      tables[i].querySelector(".row").textContent = i + 1;
+      tables[i].querySelector(".table-num").textContent = i + 1;
   }
 
   tableAmountIndex = i;
@@ -741,7 +741,7 @@ $("table.result-table-multiple").on("click", "td.remove-item", function () {
     tableAmountIndex++;
      $(".field-hidden:not(.field-radio) [data-bind]").val("");
      $('input[name="accessed-additional"]').prop("checked", false);
-     $('input[name="accessed-additional"]').siblings(".w-form-formradioinput").removeClass("w--redirected-checked");
+     $('input[name="accessed-additional"]').siblings(".w-form-formradioinput").removeClass("w--redirected-checked")
   //  setTimeout(() => {
       $('select[data-bind="stolen-from"]').val(null).trigger("change");
       $('select[name="amount"]')
@@ -757,11 +757,10 @@ $("table.result-table-multiple").on("click", "td.remove-item", function () {
   //}, 160)
 });
 
-
 function createAmountTableItem() {
   $(".result-table-multiple .multiple").append(`
   
-  <div class="input-stolen-wrapper" id="row-${tableAmountIndex}">
+  <div class="input-stolen-wrapper data" id="row-${tableAmountIndex}">
   <div id="w-node-_79d40cca-7b7e-8d05-1d19-a2ef7a522391-ce03a58a" class="table-num">${tableAmountIndex}</div>
   <div data-update='stolen-from' class="table-stolen"></div>
   <div data-update='stolen-amount' class="table-amount"></div>
