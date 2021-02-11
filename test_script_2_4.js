@@ -785,6 +785,18 @@ function createAccountTableSpecialItem() {
 	</tr>
 	`);
 }
+function createAccountTableItemFromAmounts() {
+  $(".result-table-accounts tbody.multiple").append(`
+	<tr id="item-${tableAccountIndex}" class="accounts-item">
+			<td class="row">${tableAccountIndex}</td>
+			<td data-update='stolen-from'></td>
+			<td class="table-accessed" data-update='accessed-additional'></td>
+			<td class="remove-file remove-item" style="visibility: hidden;
+    z-index: -99"></td>
+	</tr>
+	`);
+}
+
 
 $(".btn-submit").on("click", function (e) {
   const $that = $(this);
