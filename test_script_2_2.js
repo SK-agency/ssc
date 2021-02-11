@@ -754,7 +754,7 @@ $("table.result-table-multiple").on("click", "td.remove-item", function () {
       ? $(".result-table-multiple").attr("style", "")
       : $(".result-table-multiple").css("display", "none");
   //}, 160)
-
+});
 
 
 function createAmountTableItem() {
