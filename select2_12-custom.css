@@ -166,9 +166,9 @@
 }
 
 .remove-btn:hover {
-background: #0164b3;
+background: #29335c;
 }
 
-.remove-btn:hover ~  .remove-line {
-background: #fff;
+.remove-btn:hover .remove-line {
+background-color: #fff;
 }
