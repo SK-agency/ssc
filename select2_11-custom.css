@@ -164,3 +164,11 @@
 .field-hidden {
     display: none;
 }
+
+.remove-btn:hover {
+background: #0164b3;
+}
+
+.remove-btn:hover ~  .remove-line {
+background: #fff;
+}
