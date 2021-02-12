@@ -765,8 +765,11 @@ function createAmountTableItem() {
   <div data-update='stolen-from' class="table-stolen"></div>
   <div data-update='stolen-amount' class="table-amount"></div>
   <div data-update='currency' class="table-currency"></div>
-  <div class="remove-file remove-item table-remove"></div>
-	  <div id="w-node-_79d40cca-7b7e-8d05-1d19-a2ef7a52239a-ce03a58a">
+  <div data-w-id="5445a462-b543-8d8d-27ac-c309b8042f5d" class="remove-file remove-item table-remove remove-btn" style="background-color: rgba(0, 0, 0, 0);">
+  <div class="remove-line opposite" style="background-color: rgb(41, 51, 92);"></div>
+  <div class="remove-line" style="background-color: rgb(41, 51, 92);"></div>
+  </div>
+  <div id="w-node-_79d40cca-7b7e-8d05-1d19-a2ef7a52239a-ce03a58a">
 	  <div data-key='crypto' class="table-crypto-key"></div>
 	  <div data-update='crypto' class="table-crypto-update"></div>
 	  </div>
