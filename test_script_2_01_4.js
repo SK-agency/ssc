@@ -764,7 +764,7 @@ function createAmountTableItem() {
 	  <div class="table-num">${tableAmountIndex}</div>
 	  <div data-update='stolen-from' class="table-stolen"></div>
 	  <div data-update='stolen-amount' class="table-amount"></div>
-	  <div data-update='currency' class="table-currency">currency</div>
+	  <div data-update='currency' class="table-currency"></div>
 	  
 	  <div data-w-id="5445a462-b543-8d8d-27ac-c309b8042f5d" class="remove-file remove-item table-remove remove-btn">
 		  <div class="remove-line opposite"></div>
