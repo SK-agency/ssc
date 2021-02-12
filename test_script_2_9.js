@@ -769,10 +769,10 @@ function createAmountTableItem() {
   <div class="remove-line opposite" style="background-color: rgb(41, 51, 92);"></div>
   <div class="remove-line" style="background-color: rgb(41, 51, 92);"></div>
   </div>
-  <div id="w-node-_79d40cca-7b7e-8d05-1d19-a2ef7a52239a-ce03a58a">
-	  <div data-key='crypto' class="table-crypto-key"></div>
-	  <div data-update='crypto' class="table-crypto-update"></div>
-	  </div>
+  <div id="w-node-div-block-4-ce03a58a" class="additional-wrapper">
+	  <div class="table-crypto-key"></div>
+	  <div class="table-crypto-update"></div>
+  </div>
   </div>`);
 }
 
