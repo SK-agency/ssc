@@ -761,12 +761,12 @@ function createAmountTableItem() {
   $(".result-table-multiple .multiple").append(`
   
   <div class="input-stolen-wrapper data" id="row-${tableAmountIndex}">
-	  <div class="table-num">${tableAmountIndex}</div>
+	  <div class="table-num row">${tableAmountIndex}</div>
 	  <div data-update='stolen-from' class="table-stolen"></div>
 	  <div data-update='stolen-amount' class="table-amount"></div>
 	  <div data-update='currency' class="table-currency"></div>
 	  
-	  <div data-w-id="5445a462-b543-8d8d-27ac-c309b8042f5d" class="remove-file remove-item table-remove remove-btn">
+	  <div class="remove-file remove-item table-remove remove-btn">
 		  <div class="remove-line opposite"></div>
 		  <div class="remove-line"></div>
 	  </div>
@@ -778,6 +778,29 @@ function createAmountTableItem() {
 	  </div>
   </div>`);
 
+}
+
+function createAccountTableItem() {
+  $(".result-table-accounts .multiple").append(`
+	<tr id="item-${tableAccountIndex}" class="accounts-item">
+			<td class="row">${tableAccountIndex}</td>
+			<td data-update='account'></td>
+			<td data-update='accessed' class="table-accessed"></td>
+			<td class="remove-file remove-item"></td>
+	</tr>
+	
+	<div id="item-${tableAccountIndex}" class="accounts-item data">
+	<div class="table-num">${tableAccountIndex}</div>
+	<div data-update='account' class='account'></div>
+	<div data-update='accessed' class="table-accessed"></div>
+	  
+	  <div class="remove-file remove-item remove-btn">
+		  <div class="remove-line opposite"></div>
+		  <div class="remove-line"></div>
+	  </div>
+	</div>
+	
+	`);
 }
 
 
