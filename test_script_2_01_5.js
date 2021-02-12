@@ -675,7 +675,7 @@ $(".field-agencies [data-bind]").on("change keyup", function () {
   }
 });
 
-$(".field-hidden.btn-add").on("click", function (e) {
+$(".btn-add").on("click", function (e) {
   e.preventDefault();
   $(".field-hidden:not(.field-radio) [data-bind]").val("");
   $('input[name="accessed-additional"]').prop("checked", false);
