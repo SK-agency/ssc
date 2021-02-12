@@ -771,6 +771,7 @@ function createAmountTableItem() {
 		  <div class="remove-line"></div>
 	  </div>
 	  
+	  <div></div>
 	  <div class="additional-wrapper">
 		  <div data-key='crypto' class="table-crypto-key"></div>
 		  <div data-update='crypto' class="table-crypto-update"></div>
