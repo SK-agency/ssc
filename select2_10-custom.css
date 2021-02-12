@@ -160,3 +160,7 @@
     border: 1px solid red;
     border-radius: 4px;
 }
+
+.field-hidden {
+    display: none;
+}
