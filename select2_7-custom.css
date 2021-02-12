@@ -1,18 +1,18 @@
-.section-form form .field.error .select2-container--default .select2-selection--single,
-.section-form form .field.error input,
-.section-form form .field.error textarea {
+.popup-report-wrapper-new.report-sim-form form .field.error .select2-container--default .select2-selection--single,
+.popup-report-wrapper-new.report-sim-form form .field.error input,
+.popup-report-wrapper-new.report-sim-form form .field.error textarea {
     background: #fff7f7;
     color: red;
     border-color: red;
 }
-.section-form form .field label .select2-container--default {
+.popup-report-wrapper-new.report-sim-form form .field label .select2-container--default {
     width: 100% !important;
 }
-.section-form form .field label .select2-container--default.select2-container--open .select2-selection--single {
+.popup-report-wrapper-new.report-sim-form form .field label .select2-container--default.select2-container--open .select2-selection--single {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
-.section-form form .field label .select2-container--default .select2-selection--single {
+.popup-report-wrapper-new.report-sim-form form .field label .select2-container--default .select2-selection--single {
     border: 1px solid #66669a;
     padding: 9px 30px;
     border-radius: 24px;
@@ -21,7 +21,7 @@
     outline: none;
     transition: 0.3s;
 }
-.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__rendered {
+.popup-report-wrapper-new.report-sim-form form .field label .select2-container--default .select2-selection--single .select2-selection__rendered {
     padding: 0;
     
     font-weight: 400;
@@ -29,45 +29,45 @@
     line-height: 15px;
     color: #252525;
 }
-.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__rendered,
-.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__rendered * {
+.popup-report-wrapper-new.report-sim-form form .field label .select2-container--default .select2-selection--single .select2-selection__rendered,
+.popup-report-wrapper-new.report-sim-form form .field label .select2-container--default .select2-selection--single .select2-selection__rendered * {
     
 }
-.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow {
+.popup-report-wrapper-new.report-sim-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 100%;
     width: 48px;
 }
-.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow b {
+.popup-report-wrapper-new.report-sim-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow b {
     border-width: 6px 8px;
     margin-left: -12px;
     border-color: #5a6e8e transparent transparent;
 }
-.section-form.report-sim-form form.custom-form .form-block .field.error input,
-.section-form.report-sim-form form.custom-form .form-block .field.error label .select2-container--default .select2-selection--single {
+.popup-report-wrapper-new.report-sim-form.report-sim-form form.custom-form .form-block .field.error input,
+.popup-report-wrapper-new.report-sim-form.report-sim-form form.custom-form .form-block .field.error label .select2-container--default .select2-selection--single {
     border: 1px solid red;
     border-radius: 4px;
 }
-.section-form.report-sim-form form.custom-form .form-block .field label select:disabled + span .select2-selection.select2-selection--single {
+.popup-report-wrapper-new.report-sim-form.report-sim-form form.custom-form .form-block .field label select:disabled + span .select2-selection.select2-selection--single {
     border: 1px solid #f5f8fc;
 }
-.section-form.report-sim-form form.custom-form .form-block .field label select:disabled + span .select2-selection__placeholder {
+.popup-report-wrapper-new.report-sim-form.report-sim-form form.custom-form .form-block .field label select:disabled + span .select2-selection__placeholder {
     opacity: 0.2;
 }
-.section-form.report-sim-form form.custom-form .form-block .field label select:disabled + span .select2-selection__arrow b:after {
+.popup-report-wrapper-new.report-sim-form.report-sim-form form.custom-form .form-block .field label select:disabled + span .select2-selection__arrow b:after {
     opacity: 0.4;
 }
-.section-form.report-sim-form form.custom-form .form-block .field label .select2-container--default .select2-selection--single {
+.popup-report-wrapper-new.report-sim-form.report-sim-form form.custom-form .form-block .field label .select2-container--default .select2-selection--single {
     border: 1px solid #dedede;
     border-radius: 2px;
     background-color: #fcfcfc;
     padding: 9px 15px 10px;
     height: 38px;
 }
-.section-form.report-sim-form form.custom-form .form-block .field label .select2-container--default .select2-selection--single:active,
-.section-form.report-sim-form form.custom-form .form-block .field label .select2-container--default .select2-selection--single:hover {
+.popup-report-wrapper-new.report-sim-form.report-sim-form form.custom-form .form-block .field label .select2-container--default .select2-selection--single:active,
+.popup-report-wrapper-new.report-sim-form.report-sim-form form.custom-form .form-block .field label .select2-container--default .select2-selection--single:hover {
     border-color: #bdbdbd;
 }
-.section-form.report-sim-form form.custom-form .form-block .field .select2-container--default .select2-selection--single .select2-selection__arrow {
+.popup-report-wrapper-new.report-sim-form.report-sim-form form.custom-form .form-block .field .select2-container--default .select2-selection--single .select2-selection__arrow {
     width: 35px;
 }
 .select2-dropdown {
@@ -173,7 +173,7 @@
     color: #252525;
     opacity: 0.3;
 }
-.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow b {
+.popup-report-wrapper-new.report-sim-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow b {
     margin: 0;
     border: 0;
     width: 100%;
@@ -181,7 +181,7 @@
     top: 0;
     left: 0;
 }
-.section-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow b:after {
+.popup-report-wrapper-new.report-sim-form form .field label .select2-container--default .select2-selection--single .select2-selection__arrow b:after {
     content: "";
     position: absolute;
     top: 50%;
@@ -251,4 +251,8 @@
 .popup-report-wrapper-new.report-sim-form form.custom-form .form-block .field.error label .select2-container--default .select2-selection--single {
     border: 1px solid red;
     border-radius: 4px;
+}
+
+.popup-report-wrapper-new.report-sim-form form.custom-form .form-block .field-hidden {
+    display: none;
 }
