@@ -252,7 +252,3 @@
     border: 1px solid red;
     border-radius: 4px;
 }
-
-.popup-report-wrapper-new.report-sim-form form.custom-form .form-block .field-hidden {
-    display: none;
-}
