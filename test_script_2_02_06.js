@@ -791,9 +791,9 @@ $(".result-table-multiple").on("click", ".remove-item", function () {
 });
 
 $(".result-table-accounts").on("click", ".remove-item", function () {
-  $(this).closest("accounts-item data").remove();
+  $(this).closest(".accounts-item.data").remove();
   let i = 1;
-  const trs = document.querySelectorAll(".result-table-accounts accounts-item data");
+  const trs = document.querySelectorAll(".result-table-accounts .accounts-item.data");
 
   for (i = 0; i < trs.length; i++) {
     trs[i].setAttribute("id", `item-${i + 1}`);
