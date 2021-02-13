@@ -662,7 +662,7 @@ $(".field-hidden [data-bind]").on("change keyup", function (e) {
     $($(`#row-${tableAmountIndex}  [data-update=${bind.replace(/\s/g,'-')}]`)).text(formattedNumber);
   }
 });
-$(".fields-account [data-bind]").on("change keyup", function () {
+$(".field-wrap-accounts [data-bind]").on("change keyup", function () {
   formReportSimCrime.find(".btn-submit").removeClass("error-form");
   formReportSimCrime.find(".btn-submit").prop("disabled", false);
   error = false;
