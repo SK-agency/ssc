@@ -408,6 +408,22 @@ $(".field-add-files").each(function () {
   });
 });
 
+$(document).on("click", ".result-table .remove-file-table", function () {
+  if ($(".result-table-accounts .accounts-item").length > 2) {
+    $(this).closest(".accounts-item").remove();
+  } else {
+    $(this).closest(".result-table-wrap").parent().find("input").val("");
+    $(this)
+      .closest(".result-table-wrap")
+      .parent()
+      .find("input:checked")
+      .prop("checked", false);
+    $(".result-table-accounts .result-table-wrap").remove();
+  }
+});
+
+
+
 let error = false;
 let errorProhibitedSymbol = false;
 let tableAmountIndex = 1;
@@ -418,6 +434,7 @@ const formReportSimCrime = $(".report-sim-form");
 $(".field-hidden").attr("style", "");
 $(".result-table").css("display", "none");
 $(".result-table-multiple").css("display", "none");
+$(".result-table-accounts").css("display", "none");
 
 function matchProhibitedSymbols(input) {
   const inputValue = input.val();
@@ -466,6 +483,20 @@ $('.field select[name="amount"]').each(function () {
     $(this).append(newCurrencyOption).trigger("change");
   }
 });
+
+$('.field select[name="account"]').each(function () {
+  let newAccountOption;
+  for (let i = 0; i < jsonAccounts.length; i++) {
+    newAccountOption = new Option(
+        jsonAccounts[i].value,
+        jsonAccounts[i].value,
+        false,
+        false
+    );
+    $(this).append(newAccountOption).trigger("change");
+  }
+});
+
 $('.field select[name="stolen-from"]').each(function () {
   let newStolenOption;
   for (let i = 0; i < jsonStolenFrom.length; i++) {
@@ -757,6 +788,29 @@ $(".result-table-multiple").on("click", ".remove-item", function () {
   //}, 160)
 });
 
+$(".result-table-accounts").on("click", ".remove-item", function () {
+  $(this).closest("accounts-item data").remove();
+  let i = 1;
+  const trs = document.querySelectorAll(".result-table-accounts accounts-item data");
+
+  for (i = 0; i < trs.length; i++) {
+    trs[i].setAttribute("id", `item-${i + 1}`);
+    trs[i].querySelector(".row").textContent = i + 1;
+  }
+  tableAccountIndex = i;
+
+  if(tableAccountIndex === 0) {
+    tableAccountIndex++
+     $('[data-bind="accessed"]').prop("checked", false);
+    $('.fields-account [data-bind="account"]').val("");
+  }
+
+    trs.length
+        ? $(".result-table-accounts").attr("style", "")
+        : $(".result-table-accounts").css("display", "none");
+});
+
+
 function createAmountTableItem() {
   $(".result-table-multiple .multiple").append(`
   
@@ -782,7 +836,7 @@ function createAmountTableItem() {
 
 function createAccountTableItem() {
   $(".result-table-accounts .multiple").append(`
-	<tr id="item-${tableAccountIndex}" class="accounts-item">
+	<tr id="item-${tableAccountIndex}" class="accounts-item data">
 			<td class="row">${tableAccountIndex}</td>
 			<td data-update='account'></td>
 			<td data-update='accessed' class="table-accessed"></td>
@@ -805,25 +859,33 @@ function createAccountTableItem() {
 
 
 function createAccountTableSpecialItem() {
-  $(".result-table-accounts tbody.multiple").append(`
-	<tr id="item-${tableAccountIndex}" class="accounts-item">
-			<td class="row">${tableAccountIndex}</td>
-			<td data-update='Carrier'></td>
-			<td data-update="accessed" class="table-accessed">Lost control</td>
-			<td class="remove-file remove-item" style="visibility: hidden;
-    z-index: -99"></td>
-	</tr>
+  $(".result-table-accounts .multiple").append(`	
+	<div id="item-${tableAccountIndex}" class="accounts-item data">
+	<div class="row">${tableAccountIndex}</div>
+	<div data-update='Carrier' class='account'></div>
+	<div data-update='accessed' class="table-accessed">Lost control</div>
+	  
+	  <div class="remove-file remove-item remove-btn" style="visibility: hidden;
+    z-index: -99">
+		  <div class="remove-line opposite"></div>
+		  <div class="remove-line"></div>
+	  </div>
+	</div>
 	`);
 }
 function createAccountTableItemFromAmounts() {
-  $(".result-table-accounts tbody.multiple").append(`
-	<tr id="item-${tableAccountIndex}" class="accounts-item">
-			<td class="row">${tableAccountIndex}</td>
-			<td data-update='stolen-from'></td>
-			<td class="table-accessed" data-update='accessed-additional'></td>
-			<td class="remove-file remove-item" style="visibility: hidden;
-    z-index: -99"></td>
-	</tr>
+  $(".result-table-accounts .multiple").append(`
+	<div id="item-${tableAccountIndex}" class="accounts-item data">
+	<div class="row">${tableAccountIndex}</div>
+	<div data-update='stolen-from' class='account'></div>
+	<div data-update='accessed-additional' class="table-accessed"></div>
+	  
+	  <div class="remove-file remove-item remove-btn" style="visibility: hidden;
+    z-index: -99">
+		  <div class="remove-line opposite"></div>
+		  <div class="remove-line"></div>
+	  </div>
+	</div>
 	`);
 }
 
@@ -886,4 +948,223 @@ $(".btn-submit").on("click", function (e) {
       $that.prop("disabled", true);
     }, 200);
   }
+});
+
+$(".custom-form").on("submit", function (e) {
+  const $this = this;
+  $(".field-hidden").css("display", "block");
+
+  var _this = $(this);
+  e.preventDefault();
+
+  $(this)
+    .find(
+      ".field:not(.field-carrier):not(.field-add-files):not(.field-checkbox):not(.field-radio):not(.field-hidden):not(.fields-account .field):not(.field-agency)"
+    )
+    .each(function () {
+      let el = $(this).find("input, textarea, select")[0];
+      let name = el.getAttribute("name") || el.getAttribute("data-bind");
+      let value = el.value;
+      formData.append(name, value);
+    });
+
+  if ($(this).find(".field-hidden")) {
+    let tableArray = [];
+
+    $(this)
+      .find(".result-table-multiple .input-info-wrapper")
+      .each(function () {
+        let itemObject = {};
+        $(this)
+          .find("[data-update]")
+          .each(function () {
+            let el = $(this);
+            let name = el.attr("data-update");
+
+            if (name === "accessed-additional") {
+              name = 'accessed'
+            }
+
+            let value = el.text();
+            itemObject[name] = value;
+          });
+        tableArray.push(itemObject);
+      });
+    formData.append("amounts", JSON.stringify(tableArray));
+  }
+
+  if ($(this).find(".field-wrap-accounts .field")) {
+    let tableArray = [];
+
+    $(this)
+      .find(".result-table-accounts .accounts-item data")
+      .each(function () {
+        let itemObject = {};
+        $(this)
+          .find("[data-update]")
+          .each(function () {
+            let el = $(this);
+            let name = el.attr("data-update");
+
+            if(name === "account" || name === "stolen-from" || name === "Carrier"){
+              name = 'account';
+            }
+
+            if(name === "accessed" || name === "accessed-additional"){
+              name = 'accessed';
+            }
+
+            let value = el.text();
+            itemObject[name] = value;
+          });
+        tableArray.push(itemObject);
+      });
+    formData.append("accounts", JSON.stringify(tableArray));
+  }
+
+  if ($(this).find(".field-agency")) {
+    let tableArray = [];
+
+    $(this)
+        .find(".result-table-agencies .agency-item")
+        .each(function () {
+          let itemObject = {};
+          $(this)
+              .find("[data-update]")
+              .each(function () {
+                let el = $(this);
+                let name = 'agency';
+                let value = el.text();
+                itemObject[name] = value;
+              });
+          tableArray.push(itemObject);
+        });
+    formData.append("agencies", JSON.stringify(tableArray));
+  }
+
+  if($(this).find(".field-carrier")) {
+    let el = $(".field-carrier select");
+    let name = el.attr("name");
+    let value;
+    if(el.next().find('.select2-selection__rendered').attr('title') !== 'Type to search') {
+      value = el.val();
+    } else {
+      value = '';
+    }
+      formData.append(name, value);
+  }
+
+  if(formData.getAll("files[]")) {
+      let files = formData.getAll("files[]");
+      for(let i = 0; i < files.length; i++) {
+        if($(this).find(".list-files li").lengthпг) {
+          $(this)
+              .find(".list-files")
+              .find("li")
+              .each(function (i) {
+                  if (files[i].name !== $(this).find(".file-name").text()) {
+                    files.splice(i, 1);
+                    formData.delete("files[]");
+                    $.each(files, function(i, v) {
+                      formData.append("files[]", v);
+                    });
+                  }
+              });
+        } else {
+          formData.delete("files[]");
+        }
+      }
+  }
+
+  if ($(this).find(".field-general.field-radio").length) {
+    let radioFields = $(this).find(".field-general.field-radio .radio-inputs, .field-general .field-radio .radio-inputs");
+    radioFields.each(function () {
+      let labels = $(this).find("label");
+      labels.each(function () {
+        if ($(this).find("input").prop("checked")) {
+          let name = $(this).find("input").attr("name");
+          let value = $(this).find("input").val();
+          formData.append(name, value);
+        }
+      });
+    });
+  }
+
+  if ($(this).find(".field-reported.field-radio").length) {
+    let radioFields = $(this).find(".field-reported.field-radio .radio-inputs");
+    radioFields.each(function () {
+      let labels = $(this).find("label");
+      labels.each(function () {
+        if ($(this).find("input").prop("checked")) {
+          let name = $(this).find("input").attr("name");
+          let value = $(this).find("input").val();
+          formData.append(name, value);
+        }
+      });
+    });
+  }
+
+  if ($(this).find(".field-checkbox").length) {
+    let checkboxesFields = $(this).find(".field-checkbox");
+    checkboxesFields.each(function () {
+      let labels = $(this).find("label");
+      let name = $(this).find("input").attr("name");
+      let values = [];
+      labels.each(function () {
+        if ($(this).find("input").prop("checked")) {
+          let value = $(this).find("input").val();
+          values.push(value);
+        }
+      });
+
+      formData.append(name, values);
+    });
+  }
+
+  new Response(formData).text().then(console.log);
+
+  var ajax_url = "https://stopsimcrime.org/wp-admin/admin-ajax.php";
+  $.ajaxSetup({
+    processData: false,
+    contentType: false,
+    beforeSend: function () {
+      _this.closest(".section-form").addClass("loaded");
+    },
+  });
+
+  $.post(ajax_url, formData)
+    .done(function (e) {
+      _this.closest(".section-form").removeClass("loaded").addClass("success");
+
+      let currentUrl = window.location.origin;
+      let append = '/success';
+      window.location = currentUrl + append;
+
+      // setTimeout(function () {
+      //   _this.closest(".section-form").removeClass("success");
+
+        //const url = new URL(window.location.href);
+       // url.searchParams.get('reload') ? '' : location.reload();
+      //}, 3000);
+    })
+    .fail(function (error) {
+      console.error(error);
+      _this.closest(".section-form").removeClass("loaded").addClass("error");
+
+      setTimeout(function () {
+        _this.closest(".section-form").removeClass("error");
+        // $this.reset();
+        //
+        // _this.find('select').val(null).trigger('change');
+        // _this.find('.result-table td').text(null);
+        // _this.find('.result-table tr').removeClass('show-line');
+        // _this.find('.result-table-agencies tbody tr, .result-table-multiple tbody tr, .result-table-accounts tbody tr').remove();
+        // _this.find('.result-table-agencies, .result-table-multiple, .result-table-accounts').css('display', 'none');
+        // _this.find('.result-table-checkbox span').text('');
+        // _this.find('.result-table-checkbox img').attr('src', '');
+
+      }, 3000);
+    });
+
+  return false;
 });
