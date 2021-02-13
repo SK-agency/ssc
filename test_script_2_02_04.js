@@ -710,6 +710,7 @@ $(".field-hidden .btn-add").on("click", function (e) {
   e.preventDefault();
   $(".field-hidden:not(.field-radio) [data-bind]").val("");
   $('input[name="accessed-additional"]').prop("checked", false);
+  $('input[name="accessed-additional"]').siblings(".w-form-formradioinput").removeClass("w--redirected-checked")
   setTimeout(() => {
     $('select[data-bind="stolen-from"]').val(null).trigger("change");
     $('select[name="amount"]')
@@ -725,6 +726,7 @@ $(".field-hidden .btn-add").on("click", function (e) {
 $(".field-wrap-accounts .btn-add").on("click", function (e) {
   e.preventDefault();
   $('[data-bind="accessed"]').prop("checked", false);
+  $('input[name="accessed"]').siblings(".w-form-formradioinput").removeClass("w--redirected-checked")
   setTimeout(() => {
     $('.field-wrap-accounts [data-bind="account"]').val("").trigger("change");
   }, 50);
