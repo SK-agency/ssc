@@ -726,7 +726,7 @@ $(".field-wrap-accounts .btn-add").on("click", function (e) {
   e.preventDefault();
   $('[data-bind="accessed"]').prop("checked", false);
   setTimeout(() => {
-    $('.fields-account [data-bind="account"]').val("").trigger("change");
+    $('.field-wrap-accounts [data-bind="account"]').val("").trigger("change");
   }, 50);
 
   //if(tableAccountIndex !== 1) {
