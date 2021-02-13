@@ -722,7 +722,7 @@ $(".field-hidden .btn-add").on("click", function (e) {
 
 });
 
-$(".fields-account .btn-add").on("click", function (e) {
+$(".field-wrap-accounts .btn-add").on("click", function (e) {
   e.preventDefault();
   $('[data-bind="accessed"]').prop("checked", false);
   setTimeout(() => {
