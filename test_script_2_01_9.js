@@ -836,13 +836,6 @@ function createAmountTableItem() {
 
 function createAccountTableItem() {
   $(".result-table-accounts .multiple").append(`
-	<tr id="item-${tableAccountIndex}" class="accounts-item data">
-			<td class="row">${tableAccountIndex}</td>
-			<td data-update='account'></td>
-			<td data-update='accessed' class="table-accessed"></td>
-			<td class="remove-file remove-item"></td>
-	</tr>
-	
 	<div id="item-${tableAccountIndex}" class="accounts-item data">
 	<div class="table-num">${tableAccountIndex}</div>
 	<div data-update='account' class='account'></div>
