@@ -853,7 +853,7 @@ function createAmountTableItem() {
 function createAccountTableItem() {
   $(".result-table-accounts .multiple").append(`
 	<div id="item-${tableAccountIndex}" class="accounts-item data">
-	<div class="table-num">${tableAccountIndex}</div>
+	<div class="row">${tableAccountIndex}</div>
 	<div data-update='account' class='account'></div>
 	<div data-update='accessed' class="table-accessed"></div>
 	  
