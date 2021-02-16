@@ -182,3 +182,7 @@ background-color: #fff;
   position: relative;
   top: -1px;
 }
+
+.result-table.result-table-checkbox img {
+	display:none;
+}
