@@ -510,6 +510,23 @@ $('.field select[name="stolen-from"]').each(function () {
   }
 });
 
+$(".field-checkbox [data-bind]").on("change keyup", function () {
+  formReportSimCrime.find(".btn-submit").removeClass("error-form");
+  formReportSimCrime.find(".btn-submit").prop("disabled", false);
+  let bind = $(this).data("bind");
+  let value = $(this).parent().find(".text").text();
+
+  if ($(this).prop("checked")) {
+    value = value;
+    updateCheckboxItem(bind, value);
+  } else {
+    value = "";
+    updateCheckboxItem(bind, value);
+    $(`[data-key=${bind}]`).fadeOut();
+  }
+});
+
+
 $(".field-general [data-bind]").on("change keyup", function () {
   formReportSimCrime.find(".btn-submit").removeClass("error-form");
   formReportSimCrime.find(".btn-submit").prop("disabled", false);
@@ -586,12 +603,9 @@ $(".field-general [data-bind]").on("change keyup", function () {
 });
 
 function updateCheckboxItem(bind, value) {
-  $(`[	=${bind}]`).closest($(".result-table")).attr("style", "");
+  $(`[data-update=${bind}]`).closest($(".result-table")).attr("style", "");	
   $(`[data-update=${bind.replace(/\s/g,'-')}]`).text(value);
-  $(`[data-key=${bind.replace(/\s/g,'-')}]`).attr(
-    "src",
-    `https://stopsimcrime.org/wp-content/themes/stopsimcrime/img/${bind}.svg`
-  );
+  $(`[data-key=${bind.replace(/\s/g,'-')}]`).fadeIn();
 }
 
 
