@@ -519,6 +519,7 @@ $(".field-checkbox [data-bind]").on("change keyup", function () {
   if ($(this).prop("checked")) {
     value = value;
     updateCheckboxItem(bind, value);
+    $(`[data-key=${bind}]`).fadeIn();
   } else {
     value = "";
     updateCheckboxItem(bind, value);
@@ -605,7 +606,6 @@ $(".field-general [data-bind]").on("change keyup", function () {
 function updateCheckboxItem(bind, value) {
   $(`[data-update=${bind}]`).closest($(".result-table")).attr("style", "");	
   $(`[data-update=${bind.replace(/\s/g,'-')}]`).text(value);
-  $(`[data-key=${bind.replace(/\s/g,'-')}]`).fadeIn();
 }
 
 
