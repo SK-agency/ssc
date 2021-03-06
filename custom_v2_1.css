@@ -161,7 +161,7 @@
     border-radius: 4px;
 }
 
-.field-hidden {
+.field-hidden, .field-agency {
     display: none;
 }
 
