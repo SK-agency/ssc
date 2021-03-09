@@ -432,9 +432,11 @@ let tableAgenciesIndex = 1;
 let countryOption;
 const formReportSimCrime = $(".report-sim-form");
 $(".field-hidden").attr("style", "");
+$(".field-agency").attr("style", "");
 $(".result-table").css("display", "none");
 $(".result-table-multiple").css("display", "none");
 $(".result-table-accounts").css("display", "none");
+$(".result-table-agencies").css("display", "none");
 
 function matchProhibitedSymbols(input) {
   const inputValue = input.val();
@@ -481,6 +483,19 @@ $('.field select[name="amount"]').each(function () {
       false
     );
     $(this).append(newCurrencyOption).trigger("change");
+  }
+});
+
+$('.field-agencies select[name="agency"]').each(function () {
+  let newAgencyOption;
+  for (let i = 0; i < jsonAgency.length; i++) {
+    newAgencyOption = new Option(
+        jsonAgency[i].value,
+        jsonAgency[i].value,
+        false,
+        false
+    );
+    $(this).append(newAgencyOption).trigger("change");
   }
 });
 
@@ -818,7 +833,7 @@ $(".result-table-accounts").on("click", ".remove-item", function () {
   if(tableAccountIndex === 0) {
     tableAccountIndex++
      $('[data-bind="accessed"]').prop("checked", false);
-    $('.fields-account [data-bind="account"]').val("");
+     $('.field-wrap-accounts [data-bind="account"]').val("");
   }
 
     trs.length
@@ -826,6 +841,27 @@ $(".result-table-accounts").on("click", ".remove-item", function () {
         : $(".result-table-accounts").css("display", "none");
 });
 
+
+$(".result-table-agencies").on("click", ".remove-item", function () {
+  $(this).closest(".agencies-item.data").remove();
+  let i = 1;
+  const trs = document.querySelectorAll(".result-table-agencies .agencies-item.data");
+
+  for (i = 0; i < trs.length; i++) {
+    trs[i].setAttribute("id", `agencyItem-${i + 1}`);
+    trs[i].querySelector(".row").textContent = i + 1;
+  }
+  tableAgenciesIndex = i;
+
+  if(tableAgenciesIndex === 0) {
+    tableAgenciesIndex++
+    $('.field-agency [data-bind="Agency Reported To"]').val("");
+  }
+
+  trs.length
+      ? $(".result-table-agencies").attr("style", "")
+      : $(".result-table-agencies").css("display", "none");
+});
 
 function createAmountTableItem() {
   $(".result-table-multiple .multiple").append(`
@@ -866,6 +902,18 @@ function createAccountTableItem() {
 	`);
 }
 
+function createAgenciesTableItem() {
+  $(".result-table-agencies .multiple").append(`
+	<div id="agencyItem-${tableAgenciesIndex}" class="agencies-item data">
+	   <div class="row">${tableAgenciesIndex}</div>
+	   <div data-update='Agency-Reported-To' class="agency"></div>
+	<div class="remove-file remove-item remove-btn">
+		<div class="remove-line opposite"></div>
+		<div class="remove-line"></div>
+	</div>
+</div>
+	`);
+}
 
 function createAccountTableSpecialItem() {
   $(".result-table-accounts .multiple").append(`	
@@ -1006,7 +1054,7 @@ $(".custom-form").on("submit", function (e) {
     let tableArray = [];
 
     $(this)
-      .find(".result-table-accounts .accounts-item data")
+      .find(".result-table-accounts .accounts-item.data")
       .each(function () {
         let itemObject = {};
         $(this)
@@ -1035,7 +1083,7 @@ $(".custom-form").on("submit", function (e) {
     let tableArray = [];
 
     $(this)
-        .find(".result-table-agencies .agency-item")
+        .find(".result-table-agencies .agencies-item.data")
         .each(function () {
           let itemObject = {};
           $(this)
@@ -1131,49 +1179,15 @@ $(".custom-form").on("submit", function (e) {
   }
 
   new Response(formData).text().then(console.log);
-
-  var ajax_url = "https://stopsimcrime.org/wp-admin/admin-ajax.php";
-  $.ajaxSetup({
-    processData: false,
-    contentType: false,
-    beforeSend: function () {
-      _this.closest(".section-form").addClass("loaded");
-    },
-  });
-
-  $.post(ajax_url, formData)
-    .done(function (e) {
-      _this.closest(".section-form").removeClass("loaded").addClass("success");
-
-      let currentUrl = window.location.origin;
-      let append = '/success';
-      window.location = currentUrl + append;
-
-      // setTimeout(function () {
-      //   _this.closest(".section-form").removeClass("success");
-
-        //const url = new URL(window.location.href);
-       // url.searchParams.get('reload') ? '' : location.reload();
-      //}, 3000);
-    })
-    .fail(function (error) {
-      console.error(error);
-      _this.closest(".section-form").removeClass("loaded").addClass("error");
-
-      setTimeout(function () {
-        _this.closest(".section-form").removeClass("error");
-        // $this.reset();
-        //
-        // _this.find('select').val(null).trigger('change');
-        // _this.find('.result-table td').text(null);
-        // _this.find('.result-table tr').removeClass('show-line');
-        // _this.find('.result-table-agencies tbody tr, .result-table-multiple tbody tr, .result-table-accounts tbody tr').remove();
-        // _this.find('.result-table-agencies, .result-table-multiple, .result-table-accounts').css('display', 'none');
-        // _this.find('.result-table-checkbox span').text('');
-        // _this.find('.result-table-checkbox img').attr('src', '');
-
-      }, 3000);
-    });
-
-  return false;
+  for(var pair of formData.entries()) {
+//    $(".custom-form").append('<input type="text" type: "hidden" name="' + JSON.stringify(pair[0]) + '"value="' + JSON.stringify(pair[1]) + '">');
+    console.log(pair[0]+ ', '+ pair[1]);
+//   }
+    $('<input>', {
+		type: 'hidden',
+		name: pair[0],
+		value: pair[1]
+    }).appendTo('.custom-form');
+  }
+  
 });
