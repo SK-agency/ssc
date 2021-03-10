@@ -871,6 +871,7 @@ function createAmountTableItem() {
 	  <div data-update='stolen-from' class="table-stolen"></div>
 	  <div data-update='stolen-amount' class="table-amount"></div>
 	  <div data-update='currency' class="table-currency"></div>
+	  <div data-update='accessed-additional' class="hide"></div>
 	  
 	  <div class="remove-file remove-item table-remove remove-btn">
 		  <div class="remove-line opposite"></div>
@@ -1029,7 +1030,7 @@ $(".custom-form").on("submit", function (e) {
     let tableArray = [];
 
     $(this)
-      .find(".result-table-multiple .input-info-wrapper")
+      .find(".result-table-multiple .input-stolen-wrapper.data")
       .each(function () {
         let itemObject = {};
         $(this)
