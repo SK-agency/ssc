@@ -267,146 +267,8 @@ $(document).ready(function () {
 
 });
 
-let dropArea = document.getElementById("drop-area");
-let droppedFile;
-const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.bmp|\.tex|\.xls|\.xlsx|\.doc|\.docx|\.odt|\.txt|\.pdf|\.pptx|\.ppt|\.rtf)$/i;
 const numberRegex = /\d|[.,]/g;
 let formData = new FormData();
-
-$(".field-add-files").each(function () {
-  const mainWrapper = $(this);
-
-  // Prevent default drag behaviors
-  ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
-    dropArea.addEventListener(eventName, preventDefaults, false);
-    document.body.addEventListener(eventName, preventDefaults, false);
-  });
-
-  // Handle dropped files
-  dropArea.addEventListener("drop", handleDrop, false);
-
-  function preventDefaults(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-
-  function handleDrop(e) {
-    var dt = e.dataTransfer;
-    const droppedFiles = dt.files;
-
-    handleFiles(droppedFiles);
-  }
-
-  function handleFiles(files) {
-    files = [...files];
-    previewFile(files);
-
-    let file;
-    for (let i = 0; i < droppedFile.length; i++) {
-      file = droppedFile[i];
-        formData.append("files[]", file);
-
-    }
-  }
-
-  function previewFile(files) {
-    droppedFile = files;
-    for (let i = 0; i < files.length; i++) {
-      let file = files[i];
-
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = function () {
-        mainWrapper.find(".add-files").removeClass("not-allowed");
-        if (
-          file.size <=
-          parseInt(mainWrapper.find(".add-files").data("max-size"), 10)
-        ) {
-          if (allowedExtensions.exec(files[i].name)) {
-            mainWrapper.removeClass("error");
-            listNode = document.createElement("LI");
-            listNode.innerHTML =
-              `<span class="icon"></span><span class="file-name">` +
-              file.name +
-              `</span><span class="remove-file"></span>`;
-            mainWrapper
-              .closest(".form-block")
-              .find(".list-files")
-              .append(listNode);
-            mainWrapper.find("label").append(`<div id="progress-bar"></div>`);
-            mainWrapper.find("#progress-bar").css("width", "96%");
-            setTimeout(function () {
-              mainWrapper.find("#progress-bar").remove();
-              mainWrapper.find("#progress-bar").attr("style", "");
-            }, 1500);
-          } else {
-            mainWrapper
-              .find(".size")
-              .removeClass("hidden")
-              .siblings()
-              .addClass("hidden");
-            mainWrapper.find(".add-files").addClass("not-allowed");
-          }
-        } else {
-          mainWrapper
-            .find(".size")
-            .removeClass("hidden")
-            .siblings()
-            .addClass("hidden");
-          mainWrapper.addClass("error");
-        }
-      };
-    }
-  }
-
-  mainWrapper.find(".input-file").on("change", function (e) {
-    $(this).closest(".field").removeClass("error");
-    mainWrapper.find(".add-files").removeClass("not-allowed");
-    var files = $(this).get(0).files;
-    let listNode;
-
-    for (var i = 0; i < files.length; i++) {
-      console.log(files[i].size);
-      if (
-        files[i].size <=
-        parseInt(mainWrapper.find(".add-files").data("max-size"), 10)
-      ) {
-        if (allowedExtensions.exec(files[i].name)) {
-          listNode = document.createElement("LI");
-          listNode.innerHTML =
-            `<span class="icon"></span><span class="file-name">` +
-            files[i].name +
-            `</span><span class="remove-file"></span>`;
-          mainWrapper.parent().parent().find(".list-files").append(listNode);
-          mainWrapper.find("label").append(`<div id="progress-bar"></div>`);
-          mainWrapper.find("#progress-bar").css("width", "96%");
-          setTimeout(function () {
-            mainWrapper.find("#progress-bar").remove();
-            mainWrapper.find("#progress-bar").attr("style", "");
-          }, 1500);
-
-          formData.append("files[]", files[i]);
-
-        } else {
-          mainWrapper
-            .find(".size")
-            .removeClass("hidden")
-            .siblings()
-            .addClass("hidden");
-          mainWrapper.find(".add-files").addClass("not-allowed");
-        }
-      } else {
-        mainWrapper
-          .find(".size")
-          .removeClass("hidden")
-          .siblings()
-          .addClass("hidden");
-        mainWrapper.addClass("error");
-      }
-    }
-  });
-});
 
 $(document).on("click", ".result-table .remove-file-table", function () {
   if ($(".result-table-accounts .accounts-item").length > 2) {
@@ -440,7 +302,7 @@ $(".result-table-agencies").css("display", "none");
 
 function matchProhibitedSymbols(input) {
   const inputValue = input.val();
-  const prohibitedSymbols = /[\"\{\}\[\]\|\\\~`\^]/g;
+  const prohibitedSymbols = /[\"\{\}\[\]\|\\`\^]/g;
   const match = inputValue.match(prohibitedSymbols);
   if (match) {
     input.closest("label").addClass("prohibited-symbols");
@@ -1110,28 +972,6 @@ $(".custom-form").on("submit", function (e) {
       value = '';
     }
       formData.append(name, value);
-  }
-
-  if(formData.getAll("files[]")) {
-      let files = formData.getAll("files[]");
-      for(let i = 0; i < files.length; i++) {
-        if($(this).find(".list-files li").lengthпг) {
-          $(this)
-              .find(".list-files")
-              .find("li")
-              .each(function (i) {
-                  if (files[i].name !== $(this).find(".file-name").text()) {
-                    files.splice(i, 1);
-                    formData.delete("files[]");
-                    $.each(files, function(i, v) {
-                      formData.append("files[]", v);
-                    });
-                  }
-              });
-        } else {
-          formData.delete("files[]");
-        }
-      }
   }
 
   if ($(this).find(".field-general.field-radio").length) {
