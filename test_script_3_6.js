@@ -6,6 +6,8 @@
   jsonCurrency = eval(jsonCurrencyString[0].innerText);
   jsonStolenFromString  = document.getElementsByClassName("json_stolen_from");
   jsonStolenFrom = eval(jsonStolenFromString[0].innerText);	
+  jsonAgencyString  = document.getElementsByClassName("json_agency");
+  jsonAgency = eval(jsonAgencyString[0].innerText);
   var Defaults = $.fn.select2.amd.require("select2/defaults");
 
   $.extend(Defaults.defaults, {
