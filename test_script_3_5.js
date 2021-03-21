@@ -5,7 +5,7 @@
   jsonCurrencyString  = document.getElementsByClassName("json_currency");
   jsonCurrency = eval(jsonCurrencyString[0].innerText);
   jsonStolenFromString  = document.getElementsByClassName("json_stolen_from");
-  jsonStolenFrom = eval(jsonCurrencyString[0].innerText);	
+  jsonStolenFrom = eval(jsonStolenFromString[0].innerText);	
   var Defaults = $.fn.select2.amd.require("select2/defaults");
 
   $.extend(Defaults.defaults, {
