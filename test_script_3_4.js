@@ -2,6 +2,8 @@
 (function ($) {
   jsonCountryString  = document.getElementsByClassName("json_country");
   jsonCountry = eval(jsonCountryString[0].innerText);
+  jsonCurrencyString  = document.getElementsByClassName("json_currency");
+  jsonCurrency = eval(jsonCurrencyString[0].innerText);
   var Defaults = $.fn.select2.amd.require("select2/defaults");
 
   $.extend(Defaults.defaults, {
