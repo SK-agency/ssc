@@ -9,14 +9,9 @@
     padding: 0;
 }
 .select2-dropdown .select2-search .select2-search__field {
-    padding: 0px 12px;
-    border-radius: 4px;
-    background-color: transparent;
-    
-    font-weight: 400;
-    font-size: 16px;
-    color: #252525;
-    height: 38px;
+    padding: 0px 10px;
+    border-radius: 2px;
+    height: 33px;
 }
 .select2-dropdown .select2-search .select2-search__field:focus {
     outline: none;
@@ -105,25 +100,38 @@
     opacity: 0.3;
 }
 
+.select2-container--default .select2-selection--single {
+    background-color: #FCFCFC;
+    border: 1px solid #DEDEDE;
+    border-radius: 2px;
+    height: 33px;
+    padding: 3px 10px;
+    font-size: 16px;
+}
+
 .select2-container--default .select2-selection--single .select2-selection__placeholder {
     color: #252525;
     opacity: 0.5;
 }
-.select2-container .select2-selection--single {
-   height: 38px;
-   padding: 4px 12px;
-   font-size: 16px;
-}
+
 .select2-container .select2-selection--single .select2-selection__rendered {
     display: block;
     padding-left: 0px;
 }
+
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-	height: 38px;
-    top: 0px;
-}
-.select2-container--default .select2-search--dropdown .select2-search__field {
-    border: 1px solid #aaa;
+    border-color: transparent transparent transparent transparent;
+    border-style: none;
+    border-width: unset;
+    height: 7px;
+    left: 50%;
+    margin-left: -12px;
+    margin-top: -4px;
+    position: absolute;
+    top: 50%;
+    width: 13px;
+    background-image: url(https://uploads-ssl.webflow.com/5fdcaf8…/60ae432…_dropdown-arrow.svg);
+    background-repeat: no-repeat;
 }
 
 .field.error .error-message {
