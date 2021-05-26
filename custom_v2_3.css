@@ -134,6 +134,10 @@
     background-repeat: no-repeat;
 }
 
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    display: none;
+}
+
 .field.error .error-message {
     opacity: 1;
 }
