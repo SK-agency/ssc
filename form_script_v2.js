@@ -71,7 +71,7 @@
     css.top -= parentOffset.top;
     css.left -= parentOffset.left;
 
-    var dropdownPositionOption = this.options.get("dropdownPosition");
+    //var dropdownPositionOption = this.options.get("dropdownPosition");
 
     if (
       dropdownPositionOption === "above" ||
