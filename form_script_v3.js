@@ -58,7 +58,7 @@
     };
 
     // Determine what the parent element is to use for calciulating the offset
-    var $offsetParent = this.$dropdownParent;
+    //var $offsetParent = this.$dropdownParent;
 
     // For statically positoned elements, we need to get the element
     // that is determining the offset
@@ -71,7 +71,7 @@
     css.top -= parentOffset.top;
     css.left -= parentOffset.left;
 
-    //var dropdownPositionOption = this.options.get("dropdownPosition");
+    var dropdownPositionOption = this.options.get("dropdownPosition");
 
     if (
       dropdownPositionOption === "above" ||
