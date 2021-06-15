@@ -577,10 +577,11 @@ $(".next-inner-form").on("click", function (e) {
   const $that = $(this);
   var form = $(this).closest("form");
   var inputsRequired = form.find("[required]");
+  var currentSlide = $('.custom-form').slick('slickCurrentSlide');
   form.find(".field").removeClass("error");
-
-  inputsRequired.each(function () {	  
-    if ($('.custom-form').slick('slickCurrentSlide') = 1) {
+  
+  inputsRequired.each(function () {
+    if (currentSlide === 1) {
 	    if (!$('select[name="country"]').val() || $('select[name="country"]').val() === 0) {
 	      $('select[name="country"]').closest(".field").addClass("error");
 	      error = true;
@@ -592,7 +593,7 @@ $(".next-inner-form").on("click", function (e) {
 	    }
 	}
 	
-	if ($('.custom-form').slick('slickCurrentSlide') = 2) {
+	if (currentSlide === 2) {
 		if ($('input[name="was-stolen"]:checked').length === 0) {
          $('input[name="was-stolen"]').closest(".field").addClass("error");
          error = true;
