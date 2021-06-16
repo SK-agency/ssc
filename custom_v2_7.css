@@ -1,34 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@SK-agency 
-SK-agency
-/
-ssc
-1
-00
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-ssc/custom_v2_6.css
-@SK-agency
-SK-agency Create custom_v2_6.css
-Latest commit b468530 10 days ago
- History
- 1 contributor
-200 lines (183 sloc)  4.79 KB
-  
 .popup-report-wrapper-form form .field .select2-container--default {
     width: 100% !important;
 }
@@ -228,4 +197,9 @@ background-color: #fff;
 
 .result-table.result-table-checkbox img {
 	display:none;
+}
+
+.error-form {
+	opacity: .5 !important;
+    pointer-events:none !important;
 }
