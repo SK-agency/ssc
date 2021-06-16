@@ -151,7 +151,7 @@ $(".field-checkbox [data-bind]").on("change keyup", function () {
 $(".field-general [data-bind]").on("change keyup", function () {
   formReportSimCrime.find(".btn-submit").removeClass("error-form");
   formReportSimCrime.find(".btn-submit").prop("disabled", false);
-  $('.next-inner-form.slick-arrow').removeClass("btn-disabled");
+  formReportSimCrime.find(".next-inner-form-disabled").removeClass("error-form");
   error = false;
   $(this).closest(".field").removeClass("error");
   const bind = $(this).data("bind");
@@ -319,7 +319,7 @@ $(".field-hidden [data-bind]").on("change keyup", function (e) {
 $(".field-wrap-accounts [data-bind]").on("change keyup", function () {
   formReportSimCrime.find(".btn-submit").removeClass("error-form");
   formReportSimCrime.find(".btn-submit").prop("disabled", false);
-  $('.next-inner-form.slick-arrow').removeClass("btn-disabled");
+  formReportSimCrime.find(".next-inner-form-disabled").removeClass("error-form");
   error = false;
   $(this).closest(".field").removeClass("error");
   const bind = $(this).data("bind");
