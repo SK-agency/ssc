@@ -132,7 +132,7 @@ $('.field select[name="stolen-from"]').each(function () {
 $(".field-checkbox [data-bind]").on("change keyup", function () {
   formReportSimCrime.find(".btn-submit").removeClass("error-form");
   formReportSimCrime.find(".btn-submit").prop("disabled", false);
-  $('.next-inner-form.slick-arrow').removeClass("btn-disabled");
+  formReportSimCrime.find(".next-inner-form-disabled").removeClass("error-form");
   let bind = $(this).data("bind");
   let value = $(this).parent().find(".text").text();
 
@@ -277,6 +277,7 @@ $(".field-hidden [data-bind]").on("change keyup", function (e) {
 	
   formReportSimCrime.find(".btn-submit").removeClass("error-form");
   formReportSimCrime.find(".btn-submit").prop("disabled", false);
+  formReportSimCrime.find(".next-inner-form-disabled").removeClass("error-form");
   const bind = $(this).data("bind");
   const value = $(this).val();
   $(".result-table-multiple").attr("style", "");
