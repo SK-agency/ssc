@@ -152,6 +152,8 @@ $(".field-general [data-bind]").on("change keyup", function () {
   formReportSimCrime.find(".btn-submit").removeClass("error-form");
   formReportSimCrime.find(".btn-submit").prop("disabled", false);
   $(".next-inner-form-disabled").removeClass("error-form");
+  country_set = true;
+  carrier_set = true;
   error = false;
   $(this).closest(".field").removeClass("error");
   const bind = $(this).data("bind");
@@ -321,6 +323,8 @@ $(".field-wrap-accounts [data-bind]").on("change keyup", function () {
   formReportSimCrime.find(".btn-submit").removeClass("error-form");
   formReportSimCrime.find(".btn-submit").prop("disabled", false);
   $(".next-inner-form-disabled").removeClass("error-form");
+  country_set = true;
+  carrier_set = true;
   error = false;
   $(this).closest(".field").removeClass("error");
   const bind = $(this).data("bind");
@@ -589,19 +593,13 @@ $(".next-inner-form-disabled").on("click", function (e) {
 	      error = true;
 	      country_set = false;
 	    }
-	    else {
-	      country_set = true;
-
-	    }
     
 	    if (!$('select[name="carrier"]').val() || $('select[name="carrier"]').val() === 0) {
 	      $('select[name="carrier"]').closest(".field").addClass("error");
 	      error = true;
 	      carrier_set = false;
 	    }
-	    else {
-	      carrier_set = true
-	    }
+	    
 	    if (country_set && carrier_set) {
 	      $(".custom-form").slick('slickNext');
 	    }
