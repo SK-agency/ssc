@@ -31,7 +31,7 @@ function updateProgressBar (currentSlide) {
     $(".form-progress-green-line").animate({ width:'60%' }); 
     break;
 
-  case '5':
+  case 5:
     $(".form-progress-indicator.review").css("background-color", "#32d74b");
     $(".form-progress-indicator.submit").css("background-color", "#dedede");
     $(".form-progress-green-line").animate({ width:'80%' }); 
