@@ -1,3 +1,7 @@
+country_result = document.getElementsByClassName('country-result')[0];
+country_result_inner = document.querySelectorAll('.result-table-country');
+country_review = document.getElementsByClassName('country-review')[0];
+
 function updateProgressBar (currentSlide) {
   switch (currentSlide) {
   
@@ -9,6 +13,12 @@ function updateProgressBar (currentSlide) {
     $(".form-progress-indicator.ss").css("background-color", "#32d74b");
     $(".form-progress-indicator.details").css("background-color", "#dedede");
     $(".form-progress-green-line").animate({ width:'0%' }); 
+    
+    if (country_review.hasChildNodes()) {
+	country_result_inner.forEach( function(move) {
+	country_result.appendChild(move);
+	});
+    }
     break;
 
   case 2:
@@ -35,6 +45,12 @@ function updateProgressBar (currentSlide) {
     $(".form-progress-indicator.review").css("background-color", "#32d74b");
     $(".form-progress-indicator.submit").css("background-color", "#dedede");
     $(".form-progress-green-line").animate({ width:'80%' }); 
+
+    if (country_result.hasChildNodes()) {
+	country_result_inner.forEach( function(move) {
+	country_review.appendChild(move);
+	});
+    }
     break;
 
    case 6:
