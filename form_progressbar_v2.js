@@ -31,13 +31,13 @@ function updateProgressBar (currentSlide) {
     $(".form-progress-green-line").animate({ width:'60%' }); 
     break;
 
-//  case '5':
-//    $(".form-progress-indicator.review").css("background-color", "#32d74b");
-//    $(".form-progress-indicator.submit").css("background-color", "#dedede");
-//    $(".form-progress-green-line").animate({ width:'80%' }); 
-//    break;
+  case '5':
+    $(".form-progress-indicator.review").css("background-color", "#32d74b");
+    $(".form-progress-indicator.submit").css("background-color", "#dedede");
+    $(".form-progress-green-line").animate({ width:'80%' }); 
+    break;
 
-   case 5: //Change to 6 after Review will be finished
+   case 6:
     $(".form-progress-indicator.submit").css("background-color", "#32d74b");
     $(".form-progress-green-line").animate({ width:'100%' }); 
     break
