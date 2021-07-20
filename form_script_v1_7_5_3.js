@@ -34,7 +34,7 @@ let tableAmountIndex = 1;
 let tableAccountIndex = 1;
 let tableAgenciesIndex = 1;
 let countryOption;
-const formReportSimCrime = $(".report-sim-form");
+const formReportSimCrime = $(".custom-form");
 $(".field-hidden").attr("style", "");
 $(".field-agency").attr("style", "");
 $(".result-table").css("display", "none");
