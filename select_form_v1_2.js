@@ -18,6 +18,9 @@ $("select.js-example-basic-single").on("click", function (e) {
         $select2 = $select.data("select2"),
         $search = $select2.dropdown.$search || $select2.selection.$search,
         data = $select.select2("data");
+        $('.select2-dropdown--above').attr('id','fix');
+        $('#fix').removeClass('select2-dropdown--above');
+        $('#fix').addClass('select2-dropdown--below');
 
       $select2.dropdown.$dropdown.find('.select2-results').removeClass('padding-bottom');
 
