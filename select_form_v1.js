@@ -1,9 +1,11 @@
+var parentElement = $(".popup-report");
 $("select.js-example-basic-single").select2({
       allowClear: false,
       //placeholder: placeholder,
       minimumResultsForSearch: 0,
       minimumInputLength: 1,
       dropdownPosition: "below",
+      dropdownParent: parentElement,
       tags: true,
       sorter: (data) => data.sort((a, b) => a.text.localeCompare(b.text)),
     });
