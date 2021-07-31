@@ -30,38 +30,40 @@ function appendResults (start_wrapper, start_inner, goal_append) {
 
 function updateProgressBar (currentSlide) {
 	
-	if ($(window).width() < 960) {
+	if ($(window).width() < 768) {
 		step_color_mob = "linear-gradient(210deg, #016eb8, #56b4f0)";
 		$(".form-progress-green-line").css("background", step_color_mob);
 	}
 	else {
-		step_color_mob = "";
+		step_color_mob = "#32d74b";
 	}
 	
   switch (currentSlide) {
   
   case 0:
     $(".form-progress-indicator.ss").css("background-color", "#dedede");
+    if ($(window).width() < 768) {
     $(".form-progress-bar").css("display", "none");
     $(".form-h").css("display", "block");
+    }
     break;  
 
   case 1:
-    $(".form-progress-indicator.ss").css("background-color", "#32d74b");
     $(".form-progress-indicator.ss").css("background", step_color_mob);
     $(".form-progress-indicator.details").css("background-color", "#dedede");
     $(".form-progress-indicator.accounts").css("background-color", "#dedede");
     $(".form-progress-indicator.ai").css("background-color", "#dedede");
     $(".form-progress-indicator.review").css("background-color", "#dedede");
     $(".form-progress-green-line").animate({ width:'0%' });  
+    if ($(window).width() < 768) {
     $(".form-progress-bar").css("display", "flex");
     $(".form-h").css("display", "none");
+    }
     appendResults(country_review, country_result_inner, country_result);
 
     break;
 
   case 2:
-    $(".form-progress-indicator.details").css("background-color", "#32d74b");
     $(".form-progress-indicator.details").css("background", step_color_mob);
     $(".form-progress-indicator.accounts").css("background-color", "#dedede");
     $(".form-progress-indicator.ai").css("background-color", "#dedede");
@@ -71,7 +73,6 @@ function updateProgressBar (currentSlide) {
     break;
 
   case 3:
-    $(".form-progress-indicator.accounts").css("background-color", "#32d74b");
     $(".form-progress-indicator.accounts").css("background", step_color_mob);
     $(".form-progress-indicator.ai").css("background-color", "#dedede");
     $(".form-progress-indicator.review").css("background-color", "#dedede");
@@ -81,7 +82,6 @@ function updateProgressBar (currentSlide) {
     break;
 
   case 4:
-    $(".form-progress-indicator.ai").css("background-color", "#32d74b");
     $(".form-progress-indicator.ai").css("background", step_color_mob);
     $(".form-progress-indicator.review").css("background-color", "#dedede");
     $(".form-progress-indicator.submit").css("background-color", "#dedede");
@@ -91,8 +91,7 @@ function updateProgressBar (currentSlide) {
     break;
 
   case 5:
-    $(".form-progress-indicator.review").css("background-color", "#32d74b");
-     $(".form-progress-indicator.review").css("background", step_color_mob);
+    $(".form-progress-indicator.review").css("background", step_color_mob);
     $(".form-progress-indicator.submit").css("background-color", "#dedede");
     $(".form-progress-green-line").animate({ width:'80%' }); 
     appendResults (country_result, country_result_inner, country_review);
@@ -123,7 +122,6 @@ function updateProgressBar (currentSlide) {
     break;
 
    case 6:
-    $(".form-progress-indicator.submit").css("background-color", "#32d74b");
     $(".form-progress-indicator.submit").css("background", step_color_mob);
     $(".form-progress-green-line").animate({ width:'100%' }); 
     break
