@@ -41,7 +41,7 @@ function updateProgressBar (currentSlide) {
   switch (currentSlide) {
   
   case 0:
-    $(".form-progress-indicator.ss").css("background-color", "#dedede");
+    $(".form-progress-indicator.ss").css("background", "#dedede");
     if ($(window).width() < 768) {
     $(".form-progress-bar").css("display", "none");
     $(".form-h").css("display", "block");
@@ -50,10 +50,10 @@ function updateProgressBar (currentSlide) {
 
   case 1:
     $(".form-progress-indicator.ss").css("background", step_color_mob);
-    $(".form-progress-indicator.details").css("background-color", "#dedede");
-    $(".form-progress-indicator.accounts").css("background-color", "#dedede");
-    $(".form-progress-indicator.ai").css("background-color", "#dedede");
-    $(".form-progress-indicator.review").css("background-color", "#dedede");
+    $(".form-progress-indicator.details").css("background", "#dedede");
+    $(".form-progress-indicator.accounts").css("background", "#dedede");
+    $(".form-progress-indicator.ai").css("background", "#dedede");
+    $(".form-progress-indicator.review").css("background", "#dedede");
     $(".form-progress-green-line").animate({ width:'0%' });  
     if ($(window).width() < 768) {
     $(".form-progress-bar").css("display", "flex");
@@ -65,17 +65,17 @@ function updateProgressBar (currentSlide) {
 
   case 2:
     $(".form-progress-indicator.details").css("background", step_color_mob);
-    $(".form-progress-indicator.accounts").css("background-color", "#dedede");
-    $(".form-progress-indicator.ai").css("background-color", "#dedede");
-    $(".form-progress-indicator.review").css("background-color", "#dedede");
+    $(".form-progress-indicator.accounts").css("background", "#dedede");
+    $(".form-progress-indicator.ai").css("background", "#dedede");
+    $(".form-progress-indicator.review").css("background", "#dedede");
     $(".form-progress-green-line").animate({ width:'20%' }); 
     appendResults(stolen_review, stolen_result_inner, stolen_result);
     break;
 
   case 3:
     $(".form-progress-indicator.accounts").css("background", step_color_mob);
-    $(".form-progress-indicator.ai").css("background-color", "#dedede");
-    $(".form-progress-indicator.review").css("background-color", "#dedede");
+    $(".form-progress-indicator.ai").css("background", "#dedede");
+    $(".form-progress-indicator.review").css("background", "#dedede");
     $(".form-progress-green-line").animate({ width:'40%' }); 
     appendResults(hacked_accounts_review, hacked_accounts_inner, hacked_accounts_result);
     appendResults(compromised_info_review, compromised_info_inner, compromised_info_result);
@@ -83,8 +83,8 @@ function updateProgressBar (currentSlide) {
 
   case 4:
     $(".form-progress-indicator.ai").css("background", step_color_mob);
-    $(".form-progress-indicator.review").css("background-color", "#dedede");
-    $(".form-progress-indicator.submit").css("background-color", "#dedede");
+    $(".form-progress-indicator.review").css("background", "#dedede");
+    $(".form-progress-indicator.submit").css("background", "#dedede");
     $(".form-progress-green-line").animate({ width:'60%' }); 
     appendResults(additional_info_review, additional_info_inner, additional_info_result);
     appendResults(agencies_reported_review, agencies_reported_info_inner, agencies_reported_result);
@@ -92,7 +92,7 @@ function updateProgressBar (currentSlide) {
 
   case 5:
     $(".form-progress-indicator.review").css("background", step_color_mob);
-    $(".form-progress-indicator.submit").css("background-color", "#dedede");
+    $(".form-progress-indicator.submit").css("background", "#dedede");
     $(".form-progress-green-line").animate({ width:'80%' }); 
     appendResults (country_result, country_result_inner, country_review);
     appendResults (stolen_result, stolen_result_inner, stolen_review);
