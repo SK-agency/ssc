@@ -1,4 +1,3 @@
-<script>
 country_result = document.getElementsByClassName('country-result')[0];
 stolen_result = document.getElementsByClassName('was-stolen-result')[0];
 hacked_accounts_result = document.getElementsByClassName('hacked-accounts-result')[0];
@@ -133,5 +132,3 @@ function updateProgressBar (currentSlide) {
 $('.custom-form').on('afterChange', function(event, slick, currentSlide){
   updateProgressBar (currentSlide)
 });
-
-</script>
