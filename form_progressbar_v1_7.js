@@ -32,9 +32,10 @@ function updateProgressBar (currentSlide) {
 	
 	if ($(window).width() < 960) {
 		step_color_mob = "linear-gradient(210deg, #016eb8, #56b4f0)";
+		$(".form-progress-green-line").css("background", step_color_mob);
 	}
 	else {
-		step_color_mob = "rgba(255, 255, 255, 0)";
+		step_color_mob = "";
 	}
 	
   switch (currentSlide) {
